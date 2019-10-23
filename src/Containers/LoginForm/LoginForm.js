@@ -13,12 +13,12 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <section>
+      <section className='form-section'>
         <form>
           <input type='text' placeholder='Enter User Name'/>
           <input type='text'  placeholder='Enter Password'/>
           <Link to='/'>
-            <button type='button'>Login</button>
+            <button className='login-btn' type='button'>Login</button>
           </Link>
         </form>
       </section>

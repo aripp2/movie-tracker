@@ -15,7 +15,7 @@ const MoviesContainer = ({ movies }) => {
     />
   })
   return (
-    <section>
+    <section className='movie-container'>
       <h2>Movies Container</h2>
       {makeCards}
     </section>

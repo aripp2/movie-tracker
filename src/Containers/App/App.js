@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { fetchMovies } from '../../utils/apiCalls';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.scss';
+import LoginForm from '../LoginForm/LoginForm'
 
 class App extends Component {
   constructor() {
@@ -26,10 +27,14 @@ class App extends Component {
 
   render() {
     const { movies } = this.state
-    console.log(movies)
     return (
       <div className="App">
+        <Switch>
+          <Route exact path='/login' 
+            render={() => <LoginForm />} />
+        </Switch>
         <header className="App-header">Movie Tracker</header>
+        
         <MoviesContainer movies={movies}/>
       </div>
     );

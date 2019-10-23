@@ -4,9 +4,17 @@ import './index.scss';
 import App from './App/App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from './reducers';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+const store = createStore(rootReducer, composeWithDevTools());
+
+ReactDOM.render(
+<Provider store={store}>
+  <App /> 
+</Provider>,
+document.getElementById('root'));
+
 serviceWorker.unregister();

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './LoginForm.scss'
+import { Link } from 'react-router-dom'
+
 
 class LoginForm extends Component {
   constructor() {
@@ -13,7 +15,11 @@ class LoginForm extends Component {
     return (
       <section>
         <form>
-          form
+          <input type='text' placeholder='Enter User Name'/>
+          <input type='text'  placeholder='Enter Password'/>
+          <Link to='/'>
+            <button type='button'>Login</button>
+          </Link>
         </form>
       </section>
     )

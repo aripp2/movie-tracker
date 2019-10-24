@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import  MovieCard from '../MovieCard/MovieCard';
 import './MoviesContainer.scss';
 
@@ -22,4 +23,8 @@ const MoviesContainer = ({ movies }) => {
     )
 }
 
-export default MoviesContainer;
+const mapStateToProps = ({ movies }) => ({
+  movies
+})
+
+export default connect(mapStateToProps)(MoviesContainer);

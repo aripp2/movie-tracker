@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './containers/App/App';
+import App from './Containers/App/App';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';

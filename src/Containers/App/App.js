@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import { fetchMovies } from '../../utils/apiCalls';

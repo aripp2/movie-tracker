@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -8,6 +8,8 @@ import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.scss';
 import LoginForm from '../LoginForm/LoginForm';
 import { addMovies } from '../../actions';
+import CreateAccount from '../CreateAccount/CreateAccount'
+
 
 class App extends Component {
   constructor() {
@@ -34,11 +36,12 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">Movie Tracker</header>
-        <Switch>
+        <Redirect from="/" to="/login" />
           <Route exact path='/login' 
             render={() => <LoginForm />} />
+            <Route exact path='/createaccount' 
+            render={() => <CreateAccount />} />
           <Route exact path='/' render={() => <MoviesContainer movies={movies}/>}/>
-        </Switch>
         
       </div>
     );

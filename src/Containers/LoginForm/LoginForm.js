@@ -14,13 +14,18 @@ class LoginForm extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.value]: e.target.name })
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   submitUser = (e) => {
     e.preventDefault()
     console.log(this.state)
     postUser(this.state)
+    this.clearInputs()
+  }
+
+  clearInputs = () => {
+    this.setState({ email: '', password:''})
   }
 
   render() {

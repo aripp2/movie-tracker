@@ -11,7 +11,8 @@ class LoginForm extends Component {
     super();
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   }
 
@@ -20,10 +21,13 @@ class LoginForm extends Component {
   }
 
   submitUser = (e) => {
-    const { throwError, setUser } = this.props
+    this.setState({error: ''})
+    const { setUser } = this.props
     postUser(this.state)
-    .then(user => setUser(user))
-    .catch(err => throwError(err.message))
+    .then(user => {
+      setUser(user)
+    })
+    .catch(error => this.setState({error: error.message}))
     this.clearInputs()
   }
 
@@ -38,6 +42,7 @@ class LoginForm extends Component {
     return (
       <section className='form-section'>
         <form>
+          {this.state.error && <h2>{this.state.error}</h2>}
           <input 
             type='text' 
             placeholder='Enter User Email'

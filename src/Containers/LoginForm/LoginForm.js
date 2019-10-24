@@ -8,19 +8,51 @@ class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
+      email: '',
+      password: ''
     }
+  }
+
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  submitUser = (e) => {
+    e.preventDefault()
+    console.log(this.state)
+    postUser(this.state)
+    this.clearInputs()
+  }
+
+  clearInputs = () => {
+    this.setState({ email: '', password:''})
   }
 
   render() {
 
-    postUser('http://localhost:3001/api/v1/login')
     return (
       <section className='form-section'>
         <form>
-          <input type='text' placeholder='Enter User Name'/>
-          <input type='text'  placeholder='Enter Password'/>
+          <input 
+            type='text' 
+            placeholder='Enter User Email'
+            name='email'
+            value={this.state.email}
+            onChange={this.handleChange}
+          />
+          <input 
+            type='text'  
+            placeholder='Enter Password'
+            name='password'
+            value={this.state.password}
+            onChange={this.handleChange}
+          />
           <Link to='/'>
-            <button className='login-btn' type='button'>Login</button>
+            <button 
+              className='login-btn' 
+              type='button'
+              onClick={this.submitUser}
+            >Login</button>
           </Link>
         </form>
       </section>

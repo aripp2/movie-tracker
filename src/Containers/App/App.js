@@ -29,13 +29,13 @@ class App extends Component {
     const { movies } = this.state
     return (
       <div className="App">
+        <header className="App-header">Movie Tracker</header>
         <Switch>
           <Route exact path='/login' 
             render={() => <LoginForm />} />
+          <Route exact path='/' render={() => <MoviesContainer movies={movies}/>}/>
         </Switch>
-        <header className="App-header">Movie Tracker</header>
         
-        <MoviesContainer movies={movies}/>
       </div>
     );
   }

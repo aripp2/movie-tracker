@@ -18,17 +18,17 @@ export const getUsers = url => {
   .catch(err => console.log(err))
 }
 
-export const postUser = url => {
+export const postUser = user => {
   const options = {
     method: 'POST',
     body: JSON.stringify({
-      email: "alan@turing.io",
-       password: "password"
+      email: user.email,
+      password: user.password
     }),
     headers: {'Content-Type': 'application/json'}
   }
 
-    return fetch(url, options)
+    return fetch('http://localhost:3001/api/v1/login', options)
       .then(res => res.json())
       .then(data => console.log(data))
       .catch(err => console.log(err))

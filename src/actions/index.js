@@ -7,3 +7,8 @@ export const throwError = errorMsg => ({
   type: 'THROW_ERROR',
   errorMsg
 })
+
+export const setUser = user => ({
+	type: 'SET_USER',
+	user
+})

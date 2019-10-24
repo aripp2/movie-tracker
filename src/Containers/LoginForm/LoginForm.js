@@ -22,8 +22,8 @@ class LoginForm extends Component {
   submitUser = (e) => {
     const { throwError, setUser } = this.props
     postUser(this.state)
-    // .then(err => throwError(err.message))
     .then(user => setUser(user))
+    .catch(err => throwError(err.message))
     this.clearInputs()
   }
 

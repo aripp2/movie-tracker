@@ -22,7 +22,7 @@ export const postUser = async user => {
   }
   const response = await fetch(url, options);
   if (!response.ok) {
-     return Error('Sorry, unable to retreive your account. Try again later.')
+     throw Error('Sorry, unable to retrieve your account. Try again later.')
   }
   const foundUser = await response.json();
   return foundUser;

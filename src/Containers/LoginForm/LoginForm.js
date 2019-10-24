@@ -18,7 +18,7 @@ class LoginForm extends Component {
   }
 
   submitUser = (e) => {
-    e.preventDefault()
+    console.log('e', e)
     console.log(this.state)
     postUser(this.state)
     this.clearInputs()
@@ -50,9 +50,15 @@ class LoginForm extends Component {
           <Link to='/'>
             <button 
               className='login-btn' 
-              type='button'
+              type='button' 
               onClick={this.submitUser}
             >Login</button>
+          </Link>
+          <Link to='/createaccount'>
+            <button 
+              className='login-btn' 
+              type='button' 
+            >Create Account</button>
           </Link>
         </form>
       </section>

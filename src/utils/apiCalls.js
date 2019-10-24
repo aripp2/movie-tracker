@@ -10,14 +10,8 @@ export const fetchMovies = async () => {
   return movies.results
 };
 
-export const getUsers = url => {
-  return fetch(url)
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.log(err))
-}
-
-export const postUser = user => {
+export const postUser = async user => {
+  const url = 'http://localhost:3001/api/v1/login';
   const options = {
     method: 'POST',
     body: JSON.stringify({
@@ -26,9 +20,29 @@ export const postUser = user => {
     }),
     headers: {'Content-Type': 'application/json'}
   }
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error('Sorry, unable to retreive your account. Try again later.')
+  }
+  const foundUser = await response.json();
+  return foundUser;
+}
 
-    return fetch('http://localhost:3001/api/v1/login', options)
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
+export const addUser = async user => {
+  const url = 'http://localhost:3001/api/v1/users';
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      name: user.name,
+      email: user.email,
+      password: user.password
+    }),
+    headers: {'Content-Type': 'application/json'}
+  }
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error('Sorry, unable to create your account. Try again later.')
+  }
+  const newUser = await response.json();
+  return newUser;
 }

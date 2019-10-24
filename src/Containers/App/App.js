@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { fetchMovies } from '../../utils/apiCalls';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.scss';

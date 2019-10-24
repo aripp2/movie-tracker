@@ -22,7 +22,9 @@ export const postUser = async user => {
   }
   const response = await fetch(url, options);
   if (!response.ok) {
-    throw new Error('Sorry, unable to retreive your account. Try again later.')
+     const err = new Error('Sorry, unable to retreive your account. Try again later.')
+     console.log('in api', err)
+     return err;
   }
   const foundUser = await response.json();
   return foundUser;
@@ -44,5 +46,6 @@ export const addUser = async user => {
     throw new Error('Sorry, unable to create your account. Try again later.')
   }
   const newUser = await response.json();
+  console.log('new user', newUser.password)
   return newUser;
 }

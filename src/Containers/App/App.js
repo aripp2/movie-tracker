@@ -1,33 +1,36 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+// import PropTypes from 'prop-types';
 import { fetchMovies } from '../../utils/apiCalls';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.scss';
-import LoginForm from '../LoginForm/LoginForm'
+import LoginForm from '../LoginForm/LoginForm';
+import { addMovies } from '../../actions';
 import CreateAccount from '../CreateAccount/CreateAccount'
+
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: [],
       error: ''
     }
   }
 
   async componentDidMount() {
+    const { addMovies } = this.props
     try {
       const movies = await fetchMovies();
-      this.setState({ movies })
+      addMovies(movies)
     } catch({ message }) {
       this.setState({ error: message})
     }
   } 
 
   render() {
-    const { movies } = this.state
+    // const { movies } = this.props
     return (
       <div className="App">
         <header className="App-header">Movie Tracker</header>
@@ -36,11 +39,19 @@ class App extends Component {
             render={() => <LoginForm />} />
             <Route exact path='/createaccount' 
             render={() => <CreateAccount />} />
-          <Route exact path='/' render={() => <MoviesContainer movies={movies}/>}/>
+          <Route exact path='/' render={() => <MoviesContainer />}/>
         
       </div>
     );
   }
 }
 
-export default App;
+// const mapStateToProps = ({ movies }) => ({
+//   movies
+// })
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({ addMovies }, dispatch)
+)
+
+export default connect(null, mapDispatchToProps)(App);

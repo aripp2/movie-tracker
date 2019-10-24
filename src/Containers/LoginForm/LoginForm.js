@@ -18,8 +18,6 @@ class LoginForm extends Component {
   }
 
   submitUser = (e) => {
-    console.log('e', e)
-    console.log(this.state)
     postUser(this.state)
     this.clearInputs()
   }

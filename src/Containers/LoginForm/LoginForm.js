@@ -3,7 +3,7 @@ import './LoginForm.scss'
 import { Link } from 'react-router-dom'
 import { postUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
-import { throwError } from '../../actions';
+import { throwError, setUser } from '../../actions';
 
 
 class LoginForm extends Component {
@@ -20,9 +20,10 @@ class LoginForm extends Component {
   }
 
   submitUser = (e) => {
-    const { throwError } = this.props
+    const { throwError, setUser } = this.props
     postUser(this.state)
-    .then(err => throwError(err.message))
+    // .then(err => throwError(err.message))
+    .then(user => setUser(user))
     this.clearInputs()
   }
 
@@ -49,13 +50,13 @@ class LoginForm extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <Link to='/'>
+          {/* <Link to='/'> */}
             <button 
               className='login-btn' 
               type='button' 
               onClick={this.submitUser}
             >Login</button>
-          </Link>
+          {/* </Link> */}
           <Link to='/createaccount'>
             <button 
               className='login-btn' 
@@ -73,7 +74,8 @@ const mapStateToProps = ({ errorMsg }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  throwError: errorMsg => dispatch(throwError(errorMsg))
+  throwError: errorMsg => dispatch(throwError(errorMsg)),
+  setUser: user => dispatch(setUser(user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

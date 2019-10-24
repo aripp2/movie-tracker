@@ -24,7 +24,8 @@ class App extends Component {
   } 
 
   render() {
-    const { errorMsg } = this.props
+    const { errorMsg, user } = this.props
+    console.log("user", user)
     console.log('error message', errorMsg)
     return (
       <div className="App">
@@ -41,8 +42,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ errorMsg }) => ({
-  errorMsg
+const mapStateToProps = ({ errorMsg, user }) => ({
+  errorMsg,
+  user
 })
 
 const mapDispatchToProps = dispatch => ({

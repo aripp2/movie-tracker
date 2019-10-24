@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './LoginForm.scss'
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { postUser } from '../../utils/apiCalls';
 import { connect } from 'react-redux';
 import { throwError, setUser } from '../../actions';
@@ -32,7 +32,9 @@ class LoginForm extends Component {
   }
 
   render() {
-
+    if (this.props.user) {
+      return <Redirect to="/" />;
+    }
     return (
       <section className='form-section'>
         <form>
@@ -69,8 +71,9 @@ class LoginForm extends Component {
   } 
 }
 
-const mapStateToProps = ({ errorMsg }) => ({
-  errorMsg
+const mapStateToProps = ({ errorMsg, user }) => ({
+  errorMsg,
+  user
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -1,10 +1,9 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import  MovieCard from '../MovieCard/MovieCard';
 import './MoviesContainer.scss';
 
 const MoviesContainer = ({ movies }) => {
-  console.log('in contatiner', movies)
   const makeCards = movies.map(movie => {
     return <MovieCard 
       key={movie.id}
@@ -24,9 +23,8 @@ const MoviesContainer = ({ movies }) => {
     )
 }
 
-// const mapStateToProps = ({ movies }) => ({
-//   movies
-// })
+const mapStateToProps = ({ movies }) => ({
+  movies
+})
 
-export default MoviesContainer;
-// export default connect(mapStateToProps)(MoviesContainer);
+export default connect(mapStateToProps)(MoviesContainer);

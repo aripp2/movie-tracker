@@ -20,19 +20,17 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    const { addMovies } = this.props
     try {
       const movies = await fetchMovies();
       addMovies(movies)
-      console.log('in mount', movies)
-      // this.setState({ movies })
     } catch({ message }) {
       this.setState({ error: message})
     }
   } 
 
   render() {
-    const { movies } = this.props
-    console.log('in render', movies)
+    // const { movies } = this.props
     return (
       <div className="App">
         <header className="App-header">Movie Tracker</header>
@@ -41,19 +39,19 @@ class App extends Component {
             render={() => <LoginForm />} />
             <Route exact path='/createaccount' 
             render={() => <CreateAccount />} />
-          <Route exact path='/' render={() => <MoviesContainer movies={movies}/>}/>
+          <Route exact path='/' render={() => <MoviesContainer />}/>
         
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ movies }) => ({
-  movies
-})
+// const mapStateToProps = ({ movies }) => ({
+//   movies
+// })
 
 const mapDispatchToProps = dispatch => (
   bindActionCreators({ addMovies }, dispatch)
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

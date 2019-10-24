@@ -34,13 +34,12 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">Movie Tracker</header>
-        <Redirect from="/" to="/login" />
+        {/* <Redirect from="/" to="/login" /> */}
+        <Route exact path='/' render={() => <MoviesContainer />}/>
           <Route exact path='/login' 
             render={() => <LoginForm />} />
             <Route exact path='/createaccount' 
             render={() => <CreateAccount />} />
-          <Route exact path='/' render={() => <MoviesContainer />}/>
-        
       </div>
     );
   }

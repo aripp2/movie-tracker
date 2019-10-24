@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import './LoginForm.scss'
 import { Link } from 'react-router-dom'
-import { postUser } from '../../utils/apiCalls'
+import { postUser } from '../../utils/apiCalls';
+import { connect } from 'react-redux';
+import { throwError } from '../../actions';
 
 
 class LoginForm extends Component {
@@ -18,8 +20,9 @@ class LoginForm extends Component {
   }
 
   submitUser = (e) => {
+    const { throwError } = this.props
     postUser(this.state)
-    .then(err => console.log('in form', err))
+    .then(err => throwError(err.message))
     this.clearInputs()
   }
 
@@ -65,4 +68,12 @@ class LoginForm extends Component {
   } 
 }
 
-export default LoginForm;
+const mapStateToProps = ({ errorMsg }) => ({
+  errorMsg
+})
+
+const mapDispatchToProps = dispatch => ({
+  throwError: errorMsg => dispatch(throwError(errorMsg))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

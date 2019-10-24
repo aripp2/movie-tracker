@@ -9,7 +9,7 @@ import './App.scss';
 import LoginForm from '../LoginForm/LoginForm';
 import { addMovies } from '../../actions';
 import CreateAccount from '../CreateAccount/CreateAccount'
-
+import Header from '../Header/Header';
 
 class App extends Component {
   constructor() {
@@ -33,13 +33,13 @@ class App extends Component {
     // const { movies } = this.props
     return (
       <div className="App">
-        <header className="App-header">Movie Tracker</header>
-        <Redirect from="/" to="/login" />
+        <Header />
+
+          <Route exact path='/' render={() => <MoviesContainer />} />
           <Route exact path='/login' 
             render={() => <LoginForm />} />
-            <Route exact path='/createaccount' 
+          <Route exact path='/createaccount' 
             render={() => <CreateAccount />} />
-          <Route exact path='/' render={() => <MoviesContainer />}/>
         
       </div>
     );

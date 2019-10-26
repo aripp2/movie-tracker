@@ -2,9 +2,7 @@ export const fetchMovies = async () => {
   const url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=1b20ae1afe685b2871c8d94218f89eba&language=en-US'
   const response = await fetch(url)
     if (!response.ok) {
-      throw Error(
-        "There was an issue retrieving your movies. Please try again."
-      );
+      throw Error("There was an issue retrieving your movies. Please try again.");
     }
   const movies = await response.json();
   return movies.results
@@ -21,10 +19,12 @@ export const postUser = async user => {
     headers: {'Content-Type': 'application/json'}
   }
   const response = await fetch(url, options);
-  if (!response.ok) {
-     throw Error('Sorry, unable to retrieve your account. Try again later.')
-  }
+  // if (!response.ok) {
+  //    throw Error('Sorry, unable to retreive your account. Try again later.')
+  // }
   const foundUser = await response.json();
+  // if ()
+  console.log('found', foundUser)
   return foundUser;
 }
 
@@ -44,6 +44,5 @@ export const addUser = async user => {
     throw new Error('Sorry, unable to create your account. Try again later.')
   }
   const newUser = await response.json();
-  console.log('new user', newUser.password)
   return newUser;
 }

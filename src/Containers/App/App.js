@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-// import PropTypes from 'prop-types';
 import { fetchMovies } from '../../utils/apiCalls';
-import MoviesContainer from '../MoviesContainer/MoviesContainer';
-import './App.scss';
-import LoginForm from '../LoginForm/LoginForm';
 import { addMovies, throwError } from '../../actions';
-
+import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import CreateAccount from '../CreateAccount/CreateAccount'
+import LoginForm from '../LoginForm/LoginForm';
 import Header from '../Header/Header';
+import './App.scss';
+// import PropTypes from 'prop-types';
 
 class App extends Component {
 
@@ -25,18 +24,17 @@ class App extends Component {
 
   render() {
     const { errorMsg, user } = this.props
-    console.log("user", user)
-    console.log('error message', errorMsg)
+    console.log("user in app render", user)
+    // console.log('error message', errorMsg)
     return (
       <div className="App">
         <Header />
-          {!errorMsg && <Route exact path='/' render={() => <MoviesContainer />} />}
-          
+          {!errorMsg && <h2>{errorMsg}</h2>}
+          <Route exact path='/' render={() => <MoviesContainer />}/>
           <Route exact path='/login' 
             render={() => <LoginForm />} />
           <Route exact path='/createaccount' 
             render={() => <CreateAccount />} />
-        
       </div>
     );
   }

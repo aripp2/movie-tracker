@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import './LoginForm.scss'
-import { Redirect, Link } from 'react-router-dom'
-import { postUser } from '../../utils/apiCalls';
+import React, { Component } from 'react';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { postUser } from '../../utils/apiCalls';
 import { setUser } from '../../actions';
+import './LoginForm.scss';
 
 
 class LoginForm extends Component {
@@ -77,10 +77,10 @@ class LoginForm extends Component {
 
 const mapStateToProps = ({ user }) => ({
   user
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   setUser: user => dispatch(setUser(user))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

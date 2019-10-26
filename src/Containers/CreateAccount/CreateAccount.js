@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './CreateAccount.scss';
-import { Link } from 'react-router-dom';
+import {  Redirect } from 'react-router-dom';
 import { addUser } from '../../utils/apiCalls';
+import './CreateAccount.scss';
 
 
 class CreateAccount extends Component {
@@ -11,7 +11,8 @@ class CreateAccount extends Component {
       name: '',
       email: '',
       password: '',
-      error: ''
+      error: '',
+      success: false
     }
   }
 
@@ -19,8 +20,15 @@ class CreateAccount extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  createAccount = (e) => {
-    addUser(this.state)
+  createAccount = async (e) => {
+    this.setState({ error: '' })
+    try{
+
+      const newUser = await addUser(this.state)
+      this.setState({ success: true })
+    } catch({ message }) {
+      this.setState({ error: message })
+    }
     this.clearInputs()
   }
 
@@ -29,8 +37,12 @@ class CreateAccount extends Component {
   }
 
   render() {
+    if(this.state.success) {
+      return <Redirect to='/login' />
+    }
     return (
       <section className='form-section'>
+        {this.state.error && <h2>{this.state.error}</h2>}
         <form className='create-account-form'>
           <h2>Create Account: </h2>
           <input 
@@ -54,13 +66,11 @@ class CreateAccount extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <Link to='/login'>
-            <button 
-              className='login-btn' 
-              type='button'
-              onClick={this.createAccount} 
-            >Create Account</button>
-          </Link>
+          <button 
+            className='login-btn' 
+            type='button'
+            onClick={this.createAccount} 
+          >Create Account</button>
         </form>
       </section>
     )

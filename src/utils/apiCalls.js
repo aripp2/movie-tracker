@@ -1,11 +1,18 @@
+const baseUrl = 'https://api.themoviedb.org/3/movie/now_playing?'
+const apiKey = '1b20ae1afe685b2871c8d94218f89eba'
+
 export const fetchMovies = async () => {
-  const url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=1b20ae1afe685b2871c8d94218f89eba&language=en-US'
+  const url = `${baseUrl}api_key=${apiKey}&language=en-US`
   const response = await fetch(url)
     if (!response.ok) {
       throw Error("There was an issue retrieving your movies. Please try again.");
     }
-  const movies = await response.json();
-  return movies.results
+  let movies = await response.json();
+  movies = movies.results.map(movie => {
+    const { backdrop_path, genre_ids, id, overview, poster_path, release_date, title, vote_average } = movie
+    return { backdrop_path, genre_ids, id, overview, poster_path, release_date, title, vote_average, isFavorite: false }
+  })
+  return movies
 };
 
 export const postUser = async user => {
@@ -40,6 +47,7 @@ export const addUser = async user => {
     headers: {'Content-Type': 'application/json'}
   }
   const response = await fetch(url, options);
+  console.log(response)
   if (!response.ok) {
     throw new Error('Sorry, unable to create your account. Try again later.')
   }

@@ -12,3 +12,8 @@ export const setUser = user => ({
 	type: 'SET_USER',
 	user
 })
+
+export const toggleFavorite = (id) => ({
+	type: 'FAV_MOVIE',
+	id
+})

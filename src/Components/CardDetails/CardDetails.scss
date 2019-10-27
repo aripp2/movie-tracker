@@ -4,13 +4,48 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #F4E697;
+  color: rgb(13, 7, 17);
 }
 
 #movie-name {
   font-size: 40px;
 }
 
-#movie-name {
-  font-size: 30px;
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  width: auto;
+}
+
+.movie-details {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.fav-btn {
+  font-size: 1.25em;
+  border: none;
+  width: 200px;
+  border-radius: 5px;
+  background-color: lightgray;
+  &:hover {
+    background-color: #BC8F8F;
+  }
+}
+
+.poster {
+//   // width: 100%;
+  height: 70vh;
+  object-fit: contain;
+  // &:hover {
+  //   transition: transform .5s ease;
+  //   transform: scale(1.1);
+  //   transform-origin: top;
+  // }
 }

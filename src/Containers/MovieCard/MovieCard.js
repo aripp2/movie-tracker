@@ -1,15 +1,16 @@
 import React from 'react';
 import  './MovieCard.scss';
-import { toggleFavorite } from '../../actions'
-import { connect } from 'react-redux'
+import { toggleFavorite } from '../../actions';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const MovieCard = ({ id, title, date, poster, isFavorite, toggleFav }) => {
   const fixedDate = new Date(date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
 
   return (
     <article className='movie-card' id={id}>
-            <Link to={`/${routeType}/${movie_id}`}>
-        <img id="standardCard" src={artwork_url} alt="Album cover art" />
+      <Link to={`/movies/${id}`}>
+        <img className='poster'/*id="standardCard"*/ src={`http://image.tmdb.org/t/p/w1280${poster}`} alt="Movie poster" />
       </Link>
       <div className='movie-details'>
         <h2>{title}</h2>

@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import './CardDetails.scss';
 import PropTypes from 'prop-types'
 
-const CardDetails = ({ artist_name, album_name, artwork_url, release_date,  primary_genre_name, returnRoute }) => {
+const CardDetails = ({ movie_name, artwork_url, release_date,  movie_overview, returnRoute }) => {
   return (
     <section className="CardDetails">
       <Link to={`${returnRoute}`} className='back-btn'>◀ back</Link>
-      <article id="cardDetails-container">
-      <h1 id="movie-name">{album_name}</h1>
-      <h2 id="movie-name">{artist_name}</h2>
-      <img src={artwork_url} alt="" className='app-img-no-hover' />
-      <p className='card-detail-genre'>{primary_genre_name}</p>
+      <article className='movie-details' id="cardDetails-container">
+      <h1 id="movie-name">{movie_name}</h1>
+      {/* <h2 id="movie-name">{}</h2> */}
+      <img src={`http://image.tmdb.org/t/p/w1280${artwork_url}`} alt="" className='poster' />
+      <p className='card-detail-genre'>{movie_overview}</p>
       <p className='card-detail-release_date'>{release_date}</p>
       </article>
     </section>

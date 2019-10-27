@@ -38,20 +38,21 @@ class App extends Component {
             render={() => <CreateAccount />} />
           <Route
             path="/movies/:id"
-            render={(movies) => {
-              console.log('movies are: ', movies);
+            render={({ match }) => {
+              console.log('match are: ', match);
               let foundMovie = this.props.movies.find(movie => {
-                return movie.Id == movies.Id;
+                console.log('movie data is: ', movie);
+                return parseInt(movie.id) == match.params.id;
               });
+              console.log('FoundMovie is: ', foundMovie)
               return (
                 <CardDetails
-                // key={foundMovie.Id}
-                // artist_name={foundMovie.artistName}
-                //   album_name={foundMovie.collectionName}
-                //   artwork_url={foundMovie.artworkUrl100}
-                //   release_date={foundMovie.releaseDate}
-                //   primary_genre_name={foundMovie.primaryGenreName}
-                //   returnRoute={"/"}
+                  key={foundMovie.id}
+                  movie_name={foundMovie.title}
+                  release_date={foundMovie.release_date}
+                  movie_overview={foundMovie.overview}
+                  artwork_url={foundMovie.poster_path}
+                  returnRoute={"/"}
               />
             );
           }}

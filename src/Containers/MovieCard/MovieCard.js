@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { toggleFavorite } from '../../actions';
 import  './MovieCard.scss';
-import { toggleFavorite } from '../../actions'
-import { connect } from 'react-redux'
 
 const MovieCard = ({ id, title, date, poster, isFavorite, toggleFav }) => {
+  
   const fixedDate = new Date(date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
 
   return (

@@ -1,0 +1,17 @@
+header {
+  height: 10vh;
+  background-color:lightblue;
+}
+
+.header-title {
+  margin: 0;
+}
+
+.signout,
+.login,
+.create {
+  font-size: 1.25em;
+    border: none;
+    width: 200px;
+    border-radius: 5px;
+}

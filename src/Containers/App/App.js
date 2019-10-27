@@ -22,6 +22,10 @@ class App extends Component {
     }
   } 
 
+  // componentWillUnmount() {
+  //   this._isMounted = false
+  // }
+
   render() {
     const { errorMsg, user } = this.props
     console.log("user in app render", user)

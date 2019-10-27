@@ -15,6 +15,13 @@ class LoginForm extends Component {
       error: ''
     }
   }
+  componentDidMount() {
+    this._isMounted = true
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false
+  }
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })

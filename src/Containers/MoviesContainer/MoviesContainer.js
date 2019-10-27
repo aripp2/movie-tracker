@@ -13,6 +13,7 @@ const MoviesContainer = ({ movies }) => {
       poster={movie.poster_path}
       vote={movie.vote_average}
       overview={movie.overview}
+      isFavorite={movie.isFavorite}
     />
   })
   return (

@@ -11,7 +11,7 @@ const Header = ({ user }) => {
   return (
     <header>
       <button>View Favorites</button>
-      <h1>Movie Tracker</h1>
+      <h1 className='header-title'>Movie Tracker</h1>
       {user !== null && <h2>Welcome {user.name}</h2>}
       <Link to='/login'>
         <button 

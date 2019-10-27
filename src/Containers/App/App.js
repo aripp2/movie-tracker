@@ -13,7 +13,7 @@ import './App.scss';
 class App extends Component {
 
   async componentDidMount() {
-    const { addMovies } = this.props
+    const { addMovies, throwError } = this.props
     try {
       const movies = await fetchMovies();
       addMovies(movies)

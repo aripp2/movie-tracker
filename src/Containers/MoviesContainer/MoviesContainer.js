@@ -14,6 +14,7 @@ const MoviesContainer = ({ movies }) => {
       vote={movie.vote_average}
       overview={movie.overview}
       isFavorite={movie.isFavorite}
+      movie={movie}
     />
   })
   return (

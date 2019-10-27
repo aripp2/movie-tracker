@@ -64,6 +64,7 @@ export const addUser = async user => {
 }
 
 export const addFavorite = async (userId, movie) => {
+  console.log('in call', movie)
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   const options = {
     method: 'POST',
@@ -101,7 +102,7 @@ export const getFavorites = async userId => {
   return favoriteMovies
 }
 
-export const removeFav = async (userId, favId) => {
+export const removeFavorite = async (userId, favId) => {
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites/${favId}`;
   const options = {
     method: 'DELETE',

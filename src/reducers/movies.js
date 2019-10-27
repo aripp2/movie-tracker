@@ -10,6 +10,18 @@ export const movies = (state=[], action) => {
           return movie
         }
       })
+    case 'UPDATE_FAVS':
+    // console.log('in reducer action', state)
+      // return state.map(movie => {
+      //   // console.log('in reducer movie', movie)
+      //   // console.log('in reducer action', action.favs.favorites)
+      //   action.favs.favorites.forEach(fav => {
+      //     if(fav.movie_id === movie.id) {
+      //       movie.isFavorite = true;
+      //     }
+      //     return movie;
+      //   })
+      // })
     default:
       return state;
   }

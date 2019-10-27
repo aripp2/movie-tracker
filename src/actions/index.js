@@ -22,3 +22,8 @@ export const getFavs = favs => ({
   type: 'GET_FAVS',
   favs
 })
+
+export const updateFavs = favs => ({
+  type: 'UPDATE_FAVS',
+  favs
+})

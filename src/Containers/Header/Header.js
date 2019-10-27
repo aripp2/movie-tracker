@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser, getFavs } from '../../actions';
+import { setUser, setFavs } from '../../actions';
 import './Header.scss';
 
-const Header = ({ user, setUser, getFavs }) => {
+const Header = ({ user, setUser, setFavs }) => {
 
   return (
     <header>
@@ -27,7 +27,7 @@ const Header = ({ user, setUser, getFavs }) => {
         disabled={!user}
         onClick={() => {
           setUser(null);
-          getFavs([]);
+          setFavs([]);
         }}
       >Sign Out</button>
       <button 
@@ -44,7 +44,7 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = dispatch => ({
   setUser: user => dispatch(setUser(user)),
-  getFavs: favs => dispatch(getFavs(favs))
+  setFavs: favs => dispatch(setFavs(favs))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

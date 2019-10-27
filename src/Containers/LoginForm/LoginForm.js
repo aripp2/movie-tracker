@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { postUser, getFavorites } from '../../utils/apiCalls';
-import { setUser, getFavs, updateFavs } from '../../actions';
+import { setUser, setFavs, updateFavs } from '../../actions';
 import './LoginForm.scss';
 
 
@@ -22,12 +22,12 @@ class LoginForm extends Component {
 
   submitUser = async (e) => {
     this.setState({ error: '' })
-    const { setUser, getFavs, updateFavs } = this.props
+    const { setUser, setFavs, updateFavs } = this.props
     try {
       const foundUser = await postUser(this.state)
       const favs = await getFavorites(foundUser.id)
       // console.log('in form favs', favs)
-      getFavs(favs)
+      setFavs(favs)
       updateFavs(favs)
       setUser(foundUser)
     } catch({ message }){
@@ -86,7 +86,7 @@ const mapStateToProps = ({ user }) => ({
 
 const mapDispatchToProps = dispatch => ({
   setUser: user => dispatch(setUser(user)),
-  getFavs: favs => dispatch(getFavs(favs)),
+  setFavs: favs => dispatch(setFavs(favs)),
   updateFavs: favs => dispatch(updateFavs(favs))
 });
 

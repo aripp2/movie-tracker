@@ -4,7 +4,9 @@ import  MovieCard from '../MovieCard/MovieCard';
 import './MoviesContainer.scss';
 
 const MoviesContainer = ({ movies }) => {
-  const makeCards = movies.map(movie => {
+  const makeCards = movies.map(
+    movie => {
+  // console.log('in container', movie)
     return <MovieCard 
       key={movie.id}
       id={movie.id}

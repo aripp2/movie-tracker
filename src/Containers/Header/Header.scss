@@ -1,5 +1,5 @@
 header {
-  height: 10vh;
+  height: 15vh;
   background-color:lightblue;
 }
 
@@ -7,9 +7,7 @@ header {
   margin: 0;
 }
 
-.signout,
-.login,
-.create {
+.nav-btn {
   font-size: 1.25em;
     border: none;
     width: 200px;

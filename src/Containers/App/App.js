@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchMovies } from '../../utils/apiCalls';
 import { addMovies, throwError } from '../../actions';
@@ -21,10 +21,6 @@ class App extends Component {
       throwError(message)
     }
   } 
-
-  // componentWillUnmount() {
-  //   this._isMounted = false
-  // }
 
   render() {
     const { errorMsg, user } = this.props

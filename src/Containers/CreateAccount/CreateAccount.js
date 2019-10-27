@@ -23,8 +23,7 @@ class CreateAccount extends Component {
   createAccount = async (e) => {
     this.setState({ error: '' })
     try{
-
-      const newUser = await addUser(this.state)
+      await addUser(this.state)
       this.setState({ success: true })
     } catch({ message }) {
       this.setState({ error: message })

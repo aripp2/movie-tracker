@@ -4,29 +4,27 @@ import { connect } from 'react-redux';
 import { setUser } from '../../actions';
 import './Header.scss';
 
-const Header = ({ user }) => {
-    console.log('in header', user)
-    console.log('in header props', setUser)
+const Header = ({ user, setUser }) => {
 
   return (
     <header>
-      <button>View Favorites</button>
       <h1 className='header-title'>Movie Tracker</h1>
       {user !== null && <h2>Welcome {user.name}</h2>}
       <Link to='/login'>
         <button 
-          className='login'
+          className='login nav-btn'
           >Login</button>
         </Link>
       <Link to='/createaccount'>
         <button 
-          className='create'
+          className='create nav-btn'
           >Create Account</button>
       </Link>
       <button 
-        className='signout'
-        onClick={() => setUser()}
+        className='signout nav-btn'
+        onClick={() => setUser(null)}
       >Sign Out</button>
+      <button className='view-favs nav-btn'>View Favorites</button>
     </header>
   )
 }

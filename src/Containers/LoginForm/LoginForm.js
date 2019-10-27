@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postUser } from '../../utils/apiCalls';
-import { setUser } from '../../actions';
+import { postUser, getFavorites } from '../../utils/apiCalls';
+import { setUser, getFavs } from '../../actions';
 import './LoginForm.scss';
 
 
@@ -22,9 +22,11 @@ class LoginForm extends Component {
 
   submitUser = async (e) => {
     this.setState({ error: '' })
-    const { setUser } = this.props
+    const { setUser, getFavs } = this.props
     try {
       const user = await postUser(this.state)
+      const favs = await getFavorites(user.id)
+      getFavs(favs)
       setUser(user)
     } catch({ message }){
       this.setState({ error: message })
@@ -81,7 +83,8 @@ const mapStateToProps = ({ user }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setUser: user => dispatch(setUser(user))
+  setUser: user => dispatch(setUser(user)),
+  getFavs: favs => dispatch(getFavs(favs))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

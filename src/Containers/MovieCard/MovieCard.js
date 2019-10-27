@@ -4,7 +4,7 @@ import { toggleFavorite } from '../../actions';
 import  './MovieCard.scss';
 
 const MovieCard = ({ id, title, date, poster, isFavorite, toggleFav }) => {
-  
+
   const fixedDate = new Date(date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
 
   return (
@@ -12,8 +12,11 @@ const MovieCard = ({ id, title, date, poster, isFavorite, toggleFav }) => {
       <div className='movie-details'>
         <h2>{title}</h2>
         <h3>{fixedDate}</h3>
-        <button className='fav-btn' type="button"
-        onClick={() => toggleFav(id) }>Add Favorite</button>
+        <button 
+          className='fav-btn' 
+          type="button"
+          onClick={() => toggleFav(id)}
+        >Add Favorite</button>
       </div>
         <img className='poster' src={`http://image.tmdb.org/t/p/w1280${poster}`} alt='movie poster'/>
     </article>

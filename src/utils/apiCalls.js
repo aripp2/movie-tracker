@@ -64,7 +64,7 @@ export const addUser = async user => {
 }
 
 export const addFavorite = async (userId, movie) => {
-  const url = 'http://localhost:3001/api/v1/users/`${userId}`/moviefavorites';
+  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   const options = {
     method: 'POST',
     body: JSON.stringify({
@@ -90,7 +90,7 @@ export const addFavorite = async (userId, movie) => {
 }
 
 export const getFavorites = async userId => {
-  const url = 'http://localhost:3001/api/v1/users/`${userId}`/moviefavorites';
+  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   const response = await fetch(url)
   if(!response.ok) {
     console.log('get favs error', response)
@@ -102,7 +102,7 @@ export const getFavorites = async userId => {
 }
 
 export const removeFav = async (userId, favId) => {
-  const url = 'http://localhost:3001/api/v1/users/`${userId}`/moviefavorites/`${favId}`';
+  const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites/${favId}`;
   const options = {
     method: 'DELETE',
     headers: {
@@ -114,7 +114,7 @@ export const removeFav = async (userId, favId) => {
     console.log('delete fav err', response)
     // throw Error('Unable to remove this movie as a favorite at this time. Please try again later')
   }
-  return getFavorites(userId)
+  // return getFavorites(userId)
 }
 
 

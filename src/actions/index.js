@@ -13,7 +13,12 @@ export const setUser = user => ({
 	user
 })
 
-export const toggleFavorite = (id) => ({
+export const toggleFavorite = id => ({
 	type: 'FAV_MOVIE',
 	id
+})
+
+export const getFavs = favs => ({
+  type: 'GET_FAVS',
+  favs
 })

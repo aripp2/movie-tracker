@@ -8,6 +8,9 @@ const MovieCard = ({ id, title, date, poster, isFavorite, toggleFav }) => {
 
   return (
     <article className='movie-card' id={id}>
+            <Link to={`/${routeType}/${movie_id}`}>
+        <img id="standardCard" src={artwork_url} alt="Album cover art" />
+      </Link>
       <div className='movie-details'>
         <h2>{title}</h2>
         <h3>{fixedDate}</h3>

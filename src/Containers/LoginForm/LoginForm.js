@@ -60,7 +60,8 @@ class LoginForm extends Component {
           />
           <button 
             className='login-btn' 
-            type='button' 
+            type='button'
+            disabled={!this.state.email || !this.state.password} 
             onClick={this.submitUser}
           >Login</button>
           <Link to='/createaccount'>

@@ -68,6 +68,7 @@ class CreateAccount extends Component {
           <button 
             className='login-btn' 
             type='button'
+            disabled={!this.state.name || !this.state.email || !this.state.password}
             onClick={this.createAccount} 
           >Create Account</button>
         </form>

@@ -13,18 +13,24 @@ const Header = ({ user, setUser }) => {
       <Link to='/login'>
         <button 
           className='login nav-btn'
+          disabled={user}
           >Login</button>
         </Link>
       <Link to='/createaccount'>
         <button 
           className='create nav-btn'
+          disabled={user}
           >Create Account</button>
       </Link>
       <button 
         className='signout nav-btn'
+        disabled={!user}
         onClick={() => setUser(null)}
       >Sign Out</button>
-      <button className='view-favs nav-btn'>View Favorites</button>
+      <button 
+        className='view-favs nav-btn'
+        disabled={!user}
+      >View Favorites</button>
     </header>
   )
 }

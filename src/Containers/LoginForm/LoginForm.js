@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import './LoginForm.scss'
-import { Redirect, Link } from 'react-router-dom'
-import { postUser } from '../../utils/apiCalls';
+import React, { Component } from 'react';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { throwError, setUser } from '../../actions';
+import { postUser } from '../../utils/apiCalls';
+import { setUser } from '../../actions';
+import './LoginForm.scss';
 
 
 class LoginForm extends Component {
@@ -20,14 +20,15 @@ class LoginForm extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  submitUser = (e) => {
-    this.setState({error: ''})
+  submitUser = async (e) => {
+    this.setState({ error: '' })
     const { setUser } = this.props
-    postUser(this.state)
-    .then(user => {
+    try {
+      const user = await postUser(this.state)
       setUser(user)
-    })
-    .catch(error => this.setState({error: error.message}))
+    } catch({ message }){
+      this.setState({ error: message })
+    }
     this.clearInputs()
   }
 
@@ -57,13 +58,11 @@ class LoginForm extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
-          {/* <Link to='/'> */}
-            <button 
-              className='login-btn' 
-              type='button' 
-              onClick={this.submitUser}
-            >Login</button>
-          {/* </Link> */}
+          <button 
+            className='login-btn' 
+            type='button' 
+            onClick={this.submitUser}
+          >Login</button>
           <Link to='/createaccount'>
             <button 
               className='login-btn' 
@@ -76,14 +75,12 @@ class LoginForm extends Component {
   } 
 }
 
-const mapStateToProps = ({ errorMsg, user }) => ({
-  errorMsg,
+const mapStateToProps = ({ user }) => ({
   user
-})
+});
 
 const mapDispatchToProps = dispatch => ({
-  throwError: errorMsg => dispatch(throwError(errorMsg)),
   setUser: user => dispatch(setUser(user))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

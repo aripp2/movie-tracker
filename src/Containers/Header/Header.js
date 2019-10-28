@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser, setFavs } from '../../actions';
+import { setUser, clearFavs } from '../../actions';
 import './Header.scss';
 
-const Header = ({ user, setUser, setFavs }) => {
-
+const Header = ({ user, setUser, clearFavs, favorites }) => {
+  console.log('favs in header', favorites)
   return (
     <header>
       <h1 className='header-title'>Movie Tracker</h1>
@@ -28,7 +28,7 @@ const Header = ({ user, setUser, setFavs }) => {
           disabled={!user}
           onClick={() => {
             setUser(null);
-            setFavs([]);
+            clearFavs();
           }}
         >Sign Out</button>
         <button 
@@ -40,13 +40,14 @@ const Header = ({ user, setUser, setFavs }) => {
   )
 }
 
-const mapStateToProps = ({ user }) => ({
-  user
+const mapStateToProps = ({ user, favorites }) => ({
+  user, 
+  favorites
 })
 
 const mapDispatchToProps = dispatch => ({
   setUser: user => dispatch(setUser(user)),
-  setFavs: favs => dispatch(setFavs(favs))
+  clearFavs: () => dispatch(clearFavs())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

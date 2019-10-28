@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchMovies } from '../../utils/apiCalls';
-import { addMovies, throwError } from '../../actions';
+import { fetchMovies, getFavorites, addFavorite, removeFavorite } from '../../utils/apiCalls';
+import { addMovies, throwError, setFavs } from '../../actions';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import CreateAccount from '../CreateAccount/CreateAccount'
 import LoginForm from '../LoginForm/LoginForm';
@@ -20,6 +20,24 @@ class App extends Component {
     } catch({ message }) {
       throwError(message)
     }
+  }
+
+  refreshFavs = async (movie) => {
+    console.log('movie in refresh', movie)
+    const { throwError, setFavs, user } = this.props;
+    if (movie.isFavorite) {
+      removeFavorite(user.id, movie.id)
+    } else {
+      addFavorite(user.id, movie)
+    }
+    try {
+    const updatedFavs = await getFavorites(user.id)
+    console.log('updatedFavs in app', updatedFavs)
+    setFavs(updatedFavs)
+    } catch ({ message }) {
+      throwError(message)
+    }
+
   } 
 
   render() {
@@ -30,7 +48,7 @@ class App extends Component {
       <div className="App">
         <Header />
           {!errorMsg && <h2>{errorMsg}</h2>}
-          <Route exact path='/' render={() => <MoviesContainer />}/>
+          <Route exact path='/' render={() => <MoviesContainer refreshFavs={this.refreshFavs}/>}/>
           <Route exact path='/login' 
             render={() => <LoginForm />} />
           <Route exact path='/createaccount' 
@@ -47,7 +65,8 @@ const mapStateToProps = ({ errorMsg, user }) => ({
 
 const mapDispatchToProps = dispatch => ({
   addMovies: movies => dispatch(addMovies(movies)),
-  throwError: errorMsg => dispatch(throwError(errorMsg)) 
+  throwError: errorMsg => dispatch(throwError(errorMsg)),
+  setFavs: favs => dispatch(setFavs(favs)) 
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

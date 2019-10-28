@@ -26,7 +26,6 @@ class LoginForm extends Component {
     try {
       const foundUser = await postUser(this.state)
       const favs = await getFavorites(foundUser.id)
-      // console.log('in form favs', favs)
       setFavs(favs)
       updateFavs(favs)
       setUser(foundUser)

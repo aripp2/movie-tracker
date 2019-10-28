@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleFav, setFavs } from '../../actions';
-import { getFavorites, addFavorite, removeFavorite } from '../../utils/apiCalls';
+import { toggleFav } from '../../actions';
+import { addFavorite, removeFavorite } from '../../utils/apiCalls';
 import  './MovieCard.scss';
 
-const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user, favorites, setFavs }) => {
+const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user, favorites, refreshFavs }) => {
 
   const fixedDate = new Date(date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
 
   const favStatus = isFavorite ? 'Remove Favorite' : 'Add Favorite';
+
   return (
     <article className='movie-card' id={id}>
       <div className='movie-details'>
@@ -19,13 +20,15 @@ const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user
           type="button"
           disabled={!user}
           onClick={() => {
-            !isFavorite ? addFavorite(user.id, movie) :removeFavorite(user.id, id); 
-            toggleFav(id); 
-            setFavs(getFavorites(user.id));
+            toggleFav(id);
+            refreshFavs(movie);
           }}
         >{favStatus}</button>
       </div>
-        <img className='poster' src={`http://image.tmdb.org/t/p/w1280${poster}`} alt='movie poster'/>
+        <img 
+          className='poster' 
+          src={`http://image.tmdb.org/t/p/w1280${poster}`} 
+          alt='movie poster'/>
     </article>
   )
 }
@@ -37,7 +40,8 @@ const mapStateToProps = ({ user, favorites }) => ({
 
 const mapDispatchToProps = dispatch => ({
   toggleFav: id => dispatch(toggleFav(id)),
-  setFavs: favs => dispatch(setFavs(favs))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
+
+// !isFavorite ? addFavorite(user.id, movie) :removeFavorite(user.id, id); 

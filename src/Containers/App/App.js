@@ -43,7 +43,6 @@ class App extends Component {
   render() {
     const { errorMsg, user } = this.props
     console.log("user in app render", user)
-    // console.log('error message', errorMsg)
     return (
       <div className="App">
         <Header />
@@ -57,16 +56,12 @@ class App extends Component {
           <Route
             path="/movies/:id"
             render={({ match }) => {
-              // console.log('match are: ', match);
               let foundMovie = this.props.movies.find(movie => {
-                // console.log('movie data is: ', movie);
                 return parseInt(movie.id) == match.params.id;
               });
-              console.log('FoundMovie is: ', foundMovie)
               return (
                 <CardDetails
                   key={foundMovie.id}
-                  returnRoute={"/"}
                   movie={foundMovie}
               />
             );

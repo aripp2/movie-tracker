@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postUser } from '../../utils/apiCalls';
-import { setUser } from '../../actions';
+import { postUser, getFavorites } from '../../utils/apiCalls';
+import { setUser, setFavs, updateFavs } from '../../actions';
 import './LoginForm.scss';
 
 
@@ -22,10 +22,13 @@ class LoginForm extends Component {
 
   submitUser = async (e) => {
     this.setState({ error: '' })
-    const { setUser } = this.props
+    const { setUser, setFavs, updateFavs } = this.props
     try {
-      const user = await postUser(this.state)
-      setUser(user)
+      const foundUser = await postUser(this.state)
+      const favs = await getFavorites(foundUser.id)
+      setFavs(favs)
+      updateFavs(favs)
+      setUser(foundUser)
     } catch({ message }){
       this.setState({ error: message })
     }
@@ -46,7 +49,7 @@ class LoginForm extends Component {
           {this.state.error && <h2>{this.state.error}</h2>}
           <input 
             type='text' 
-            placeholder='Enter User Email'
+            placeholder='Enter Email'
             name='email'
             value={this.state.email}
             onChange={this.handleChange}
@@ -60,7 +63,8 @@ class LoginForm extends Component {
           />
           <button 
             className='login-btn' 
-            type='button' 
+            type='button'
+            disabled={!this.state.email || !this.state.password} 
             onClick={this.submitUser}
           >Login</button>
           <Link to='/createaccount'>
@@ -80,7 +84,9 @@ const mapStateToProps = ({ user }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setUser: user => dispatch(setUser(user))
+  setUser: user => dispatch(setUser(user)),
+  setFavs: favs => dispatch(setFavs(favs)),
+  updateFavs: favs => dispatch(updateFavs(favs))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

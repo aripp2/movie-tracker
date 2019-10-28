@@ -1,18 +1,50 @@
 import React from 'react';
-import './Header.scss';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setUser, setFavs } from '../../actions';
+import './Header.scss';
 
-const Header = () => {
+const Header = ({ user, setUser, setFavs }) => {
+
   return (
     <header>
       <h1 className='header-title'>Movie Tracker</h1>
-      <Link to='/login'><button className='login'>Login</button></Link>
-      <Link to='/createaccount'><button className='create'>Create Account</button></Link>
-      <Link to='/'><button className='signout'>Sign Out</button></Link>
-
-
+      {user !== null && <h2>Welcome {user.name}</h2>}
+      <Link to='/login'>
+        <button 
+          className='login nav-btn'
+          disabled={user}
+          >Login</button>
+        </Link>
+      <Link to='/createaccount'>
+        <button 
+          className='create nav-btn'
+          disabled={user}
+          >Create Account</button>
+      </Link>
+      <button 
+        className='signout nav-btn'
+        disabled={!user}
+        onClick={() => {
+          setUser(null);
+          setFavs([]);
+        }}
+      >Sign Out</button>
+      <button 
+        className='view-favs nav-btn'
+        disabled={!user}
+      >View Favorites</button>
     </header>
   )
 }
 
-export default Header;
+const mapStateToProps = ({ user }) => ({
+  user
+})
+
+const mapDispatchToProps = dispatch => ({
+  setUser: user => dispatch(setUser(user)),
+  setFavs: favs => dispatch(setFavs(favs))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

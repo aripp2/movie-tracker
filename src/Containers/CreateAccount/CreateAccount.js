@@ -23,8 +23,7 @@ class CreateAccount extends Component {
   createAccount = async (e) => {
     this.setState({ error: '' })
     try{
-
-      const newUser = await addUser(this.state)
+      await addUser(this.state)
       this.setState({ success: true })
     } catch({ message }) {
       this.setState({ error: message })
@@ -69,6 +68,7 @@ class CreateAccount extends Component {
           <button 
             className='login-btn' 
             type='button'
+            disabled={!this.state.name || !this.state.email || !this.state.password}
             onClick={this.createAccount} 
           >Create Account</button>
         </form>

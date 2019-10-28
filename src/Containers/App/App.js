@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchMovies } from '../../utils/apiCalls';
-import { addMovies, throwError } from '../../actions';
+import { fetchMovies, getFavorites, addFavorite, removeFavorite } from '../../utils/apiCalls';
+import { addMovies, throwError, setFavs } from '../../actions';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import CreateAccount from '../CreateAccount/CreateAccount'
 import LoginForm from '../LoginForm/LoginForm';
@@ -13,13 +13,30 @@ import './App.scss';
 class App extends Component {
 
   async componentDidMount() {
-    const { addMovies } = this.props
+    const { addMovies, throwError } = this.props
     try {
       const movies = await fetchMovies();
       addMovies(movies)
     } catch({ message }) {
       throwError(message)
     }
+  }
+
+  refreshFavs = async (movie) => {
+    const { throwError, setFavs, user } = this.props;
+    try {
+    if (movie.isFavorite) {
+      await removeFavorite(user.id, movie.id)
+    } else {
+      await addFavorite(user.id, movie)
+    }
+    const updatedFavs = await getFavorites(user.id)
+    console.log('updatedFavs in app', updatedFavs)
+    setFavs(updatedFavs)
+    } catch ({ message }) {
+      throwError(message)
+    }
+
   } 
 
   render() {
@@ -29,8 +46,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-          {!errorMsg && <h2>{errorMsg}</h2>}
-          <Route exact path='/' render={() => <MoviesContainer />}/>
+          {errorMsg && <h2>{errorMsg}</h2>}
+          <Route exact path='/' render={() => <MoviesContainer refreshFavs={this.refreshFavs}/>}/>
           <Route exact path='/login' 
             render={() => <LoginForm />} />
           <Route exact path='/createaccount' 
@@ -47,7 +64,8 @@ const mapStateToProps = ({ errorMsg, user }) => ({
 
 const mapDispatchToProps = dispatch => ({
   addMovies: movies => dispatch(addMovies(movies)),
-  throwError: errorMsg => dispatch(throwError(errorMsg)) 
+  throwError: errorMsg => dispatch(throwError(errorMsg)),
+  setFavs: favs => dispatch(setFavs(favs)) 
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

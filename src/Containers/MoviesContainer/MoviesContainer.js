@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import  MovieCard from '../MovieCard/MovieCard';
 import './MoviesContainer.scss';
 
-const MoviesContainer = ({ movies }) => {
-  const makeCards = movies.map(movie => {
+const MoviesContainer = ({ movies, refreshFavs }) => {
+  const makeCards = movies.map(
+    movie => {
+  // console.log('in container', movie)
     return <MovieCard 
       key={movie.id}
       id={movie.id}
@@ -14,6 +16,8 @@ const MoviesContainer = ({ movies }) => {
       vote={movie.vote_average}
       overview={movie.overview}
       isFavorite={movie.isFavorite}
+      movie={movie}
+      refreshFavs={refreshFavs}
     />
   })
   return (

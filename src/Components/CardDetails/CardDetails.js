@@ -3,17 +3,35 @@ import { Link } from 'react-router-dom';
 import './CardDetails.scss';
 import PropTypes from 'prop-types'
 
-const CardDetails = ({ movie_name, artwork_url, release_date,  movie_overview, returnRoute }) => {
+const CardDetails = ({ movie, returnRoute }) => {
+  const {backdrop_path, genre_ids, id, isFavorite, overview, poster_path, release_date, title, vote_average} = movie;
+
+  let releaseDate = release_date.split('-')
+  releaseDate = `${releaseDate[1]}/${releaseDate[2]}/${releaseDate[0]}`
+
   return (
-    <section className="CardDetails">
-      <Link to={`${returnRoute}`} className='back-btn'>◀ back</Link>
-      <article className='movie-details' id="cardDetails-container">
-      <h1 id="movie-name">{movie_name}</h1>
-      {/* <h2 id="movie-name">{}</h2> */}
-      <img src={`http://image.tmdb.org/t/p/w1280${artwork_url}`} alt="" className='movie-poster' />
-      <p >{movie_overview}</p>
-      <p >{release_date}</p>
+    <section className="cardDetails">
+      {/* <Link to={`${returnRoute}`} className='back-btn'>◀ back</Link> */}
+
+      <img className='movie-backdrop' src={`http://image.tmdb.org/t/p/w1280${backdrop_path}`} alt='movie default backdrop image' />
+
+
+      <article className='movie-details-wrapper'>
+        <img className='movie-poster' src={`http://image.tmdb.org/t/p/w1280${poster_path}`} alt='movie poster' />
+        <div className='movie-info-wrapper'>
+          <h1 className='movie-title'>{title}</h1>
+          <h2>Released: {releaseDate}</h2>
+          <p>{overview}</p>
+          <h2>Vote Average: {vote_average}</h2>
+          <Link to={`${returnRoute}`}>
+            <button className='back-btn' type='button'>
+              ◀ back
+            </button>
+            </Link>
+        </div>
       </article>
+
+
     </section>
   )
 }

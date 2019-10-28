@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { toggleFav } from '../../actions';
 import  './MovieCard.scss';
+import { Link } from 'react-router-dom';
 
 const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user, refreshFavs }) => {
 
@@ -11,6 +12,9 @@ const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user
 
   return (
     <article className='movie-card' id={id}>
+      <Link to={`/movies/${id}`}>
+        <img className='poster'/*id="standardCard"*/ src={`http://image.tmdb.org/t/p/w1280${poster}`} alt="Movie poster" />
+      </Link>
       <div className='movie-details'>
         <h2>{title}</h2>
         <h3>{fixedDate}</h3>

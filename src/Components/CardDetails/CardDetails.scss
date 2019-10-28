@@ -1,0 +1,43 @@
+#cardDetails-container {
+  display: flex;
+  // flex-flow: row wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(13, 7, 17);
+}
+
+#movie-name {
+  font-size: 40px;
+}
+
+.movie-details {
+  height: 150px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.fav-btn {
+  font-size: 1.25em;
+  border: none;
+  width: 200px;
+  border-radius: 5px;
+  background-color: lightgray;
+  &:hover {
+    background-color: #BC8F8F;
+  }
+}
+
+.movie-poster {
+  height: 80vh;
+  display: flex;
+}
+
+p {
+  margin: 2em;
+  width: 50%;
+}

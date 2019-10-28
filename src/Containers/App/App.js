@@ -56,20 +56,17 @@ class App extends Component {
           <Route
             path="/movies/:id"
             render={({ match }) => {
-              console.log('match are: ', match);
+              // console.log('match are: ', match);
               let foundMovie = this.props.movies.find(movie => {
-                console.log('movie data is: ', movie);
+                // console.log('movie data is: ', movie);
                 return parseInt(movie.id) == match.params.id;
               });
               console.log('FoundMovie is: ', foundMovie)
               return (
                 <CardDetails
                   key={foundMovie.id}
-                  movie_name={foundMovie.title}
-                  release_date={foundMovie.release_date}
-                  movie_overview={foundMovie.overview}
-                  artwork_url={foundMovie.poster_path}
                   returnRoute={"/"}
+                  movie={foundMovie}
               />
             );
           }}

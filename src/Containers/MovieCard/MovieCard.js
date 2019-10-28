@@ -12,9 +12,6 @@ const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user
 
   return (
     <article className='movie-card' id={id}>
-      <Link to={`/movies/${id}`}>
-        <img className='poster'/*id="standardCard"*/ src={`http://image.tmdb.org/t/p/w1280${poster}`} alt="Movie poster" />
-      </Link>
       <div className='movie-details'>
         <h2>{title}</h2>
         <h3>{fixedDate}</h3>
@@ -28,10 +25,9 @@ const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user
           }}
         >{favStatus}</button>
       </div>
-        <img 
-          className='poster' 
-          src={`http://image.tmdb.org/t/p/w1280${poster}`} 
-          alt='movie poster'/>
+      <Link to={`/movies/${id}`}>
+        <img className='poster'/*id="standardCard"*/ src={`http://image.tmdb.org/t/p/w1280${poster}`} alt="Movie poster" />
+      </Link>
     </article>
   )
 }

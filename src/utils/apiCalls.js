@@ -64,7 +64,6 @@ export const addUser = async user => {
 }
 
 export const addFavorite = async (userId, movie) => {
-  console.log('in call', movie)
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   const options = {
     method: 'POST',
@@ -80,15 +79,12 @@ export const addFavorite = async (userId, movie) => {
       'Content-Type': 'application/json'
     }
   }
-  console.log('url', url)
-  console.log('options', options)
   const response = await fetch(url, options)
   if(!response.ok) {
-    // console.log('add response in apiCalls', response)
     throw Error('Unable to add movie as favorite. Try again later.')
   }
   const addedFav = await response.json();
-  console.log('added fav', addedFav)
+  return addedFav;
 }
 
 export const getFavorites = async userId => {
@@ -114,7 +110,6 @@ export const removeFavorite = async (userId, favId) => {
     console.log('delete fav err', response)
     throw Error('Unable to remove this movie as a favorite at this time. Please try again later')
   }
-  // return getFavorites(userId)
 }
 
 

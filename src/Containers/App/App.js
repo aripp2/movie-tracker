@@ -23,14 +23,13 @@ class App extends Component {
   }
 
   refreshFavs = async (movie) => {
-    console.log('movie in refresh', movie)
     const { throwError, setFavs, user } = this.props;
-    if (movie.isFavorite) {
-      removeFavorite(user.id, movie.id)
-    } else {
-      addFavorite(user.id, movie)
-    }
     try {
+    if (movie.isFavorite) {
+      await removeFavorite(user.id, movie.id)
+    } else {
+      await addFavorite(user.id, movie)
+    }
     const updatedFavs = await getFavorites(user.id)
     console.log('updatedFavs in app', updatedFavs)
     setFavs(updatedFavs)
@@ -47,7 +46,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-          {!errorMsg && <h2>{errorMsg}</h2>}
+          {errorMsg && <h2>{errorMsg}</h2>}
           <Route exact path='/' render={() => <MoviesContainer refreshFavs={this.refreshFavs}/>}/>
           <Route exact path='/login' 
             render={() => <LoginForm />} />

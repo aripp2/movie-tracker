@@ -48,11 +48,12 @@ class App extends Component {
       <div className="App">
         <Header />
           {errorMsg && <h2>{errorMsg}</h2>}
-          <Route exact path='/' render={() => <MoviesContainer refreshFavs={this.refreshFavs}/>}/>
+          <Route exact path='/' render={() => <MoviesContainer viewAll={true} refreshFavs={this.refreshFavs}/>}/>
           <Route exact path='/login' 
             render={() => <LoginForm />} />
           <Route exact path='/createaccount' 
             render={() => <CreateAccount />} />
+          <Route exact path='/favorites' render={() => <MoviesContainer viewAll={false} refreshFavs={this.refreshFavs}/>}/>
           <Route
             path="/movies/:id"
             render={({ match }) => {

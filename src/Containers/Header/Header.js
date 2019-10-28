@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser, clearFavs } from '../../actions';
+
 import './Header.scss';
 
 const Header = ({ user, setUser, clearFavs, favorites }) => {
@@ -31,10 +32,12 @@ const Header = ({ user, setUser, clearFavs, favorites }) => {
             clearFavs();
           }}
         >Sign Out</button>
-        <button 
-          className='view-favs nav-btn'
-          disabled={!user}
-        >View Favorites</button>
+        <Link to='/favorites'>
+          <button 
+            className='view-favs nav-btn'
+            disabled={!user}
+          >View Favorites</button>
+        </Link>
       </div>
     </header>
   )

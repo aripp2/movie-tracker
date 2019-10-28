@@ -27,3 +27,7 @@ export const updateFavs = favs => ({
   type: 'UPDATE_FAVS',
   favs
 })
+
+export const clearFavs = () => ({
+  type: 'CLEAR_FAVS',
+})

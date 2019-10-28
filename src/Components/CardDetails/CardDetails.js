@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import './CardDetails.scss';
 import PropTypes from 'prop-types'
 
-const CardDetails = ({ movie, returnRoute }) => {
+const CardDetails = ({ movie }) => {
   const {backdrop_path, genre_ids, id, isFavorite, overview, poster_path, release_date, title, vote_average} = movie;
 
-  let releaseDate = release_date.split('-')
-  releaseDate = `${releaseDate[1]}/${releaseDate[2]}/${releaseDate[0]}`
+  // let releaseDate = release_date.split('-')
+  // releaseDate = `${releaseDate[1]}/${releaseDate[2]}/${releaseDate[0]}`   
+
+  const releaseDate = new Date(movie.release_date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
+
 
   return (
     <section className="cardDetails">
@@ -23,11 +26,11 @@ const CardDetails = ({ movie, returnRoute }) => {
           <h2>Released: {releaseDate}</h2>
           <p>{overview}</p>
           <h2>Vote Average: {vote_average}</h2>
-          <Link to={`${returnRoute}`}>
+          <Link to='/'>
             <button className='back-btn' type='button'>
               ◀ back
             </button>
-            </Link>
+          </Link>
         </div>
       </article>
 

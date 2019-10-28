@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import  MovieCard from '../MovieCard/MovieCard';
 import './MoviesContainer.scss';
 
-const MoviesContainer = ({ movies, refreshFavs }) => {
-  const makeCards = movies.map(
+const MoviesContainer = ({ viewAll, movies, favorites, refreshFavs }) => {
+  const view = viewAll ? movies : favorites;
+  const makeCards = view.map(
     movie => {
   // console.log('in container', movie)
     return <MovieCard 
@@ -27,8 +28,9 @@ const MoviesContainer = ({ movies, refreshFavs }) => {
     )
 }
 
-const mapStateToProps = ({ movies }) => ({
-  movies
+const mapStateToProps = ({ movies, favorites }) => ({
+  movies,
+  favorites
 })
 
 export default connect(mapStateToProps)(MoviesContainer);

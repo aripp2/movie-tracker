@@ -9,8 +9,6 @@ const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user
   const fixedDate = new Date(date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
 
   const favStatus = isFavorite ? 'Remove Favorite' : 'Add Favorite';
-  // console.log('fav?', favStatus)
-// console.log('favs', favorites)
   return (
     <article className='movie-card' id={id}>
       <div className='movie-details'>

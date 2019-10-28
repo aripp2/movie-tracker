@@ -83,22 +83,20 @@ export const addFavorite = async (userId, movie) => {
 
   const response = await fetch(url, options)
   if(!response.ok) {
-    console.log('post favs error', response)
-    // throw Error('Unable to add movie as favorite. Try again later.')
+    console.log('add response in apiCalls', response)
+    throw Error('Unable to add movie as favorite. Try again later.')
   }
-  const addedFav = await response.json()
-  console.log('added favorite', addedFav)
+  const addedFav = await response.json();
+  console.log('added fav', addedFav)
 }
 
 export const getFavorites = async userId => {
   const url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   const response = await fetch(url)
   if(!response.ok) {
-    console.log('get favs error', response)
-    // throw Error('Unable to retrieve your favorite movies as this time. Please try again later')
+    throw Error('Unable to retrieve your favorite movies as this time. Please try again later')
   }
   const favoriteMovies = await response.json()
-  console.log('favorites', favoriteMovies)
   return favoriteMovies
 }
 
@@ -113,9 +111,9 @@ export const removeFavorite = async (userId, favId) => {
   const response = await fetch(url, options)
   if(!response.ok) {
     console.log('delete fav err', response)
-    // throw Error('Unable to remove this movie as a favorite at this time. Please try again later')
+    throw Error('Unable to remove this movie as a favorite at this time. Please try again later')
   }
-  // return getFavorites(userId)
+  return getFavorites(userId)
 }
 
 

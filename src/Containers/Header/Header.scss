@@ -1,5 +1,5 @@
 header {
-  height: 15vh;
+  height: 10vh;
   background-color:lightblue;
 }
 
@@ -12,4 +12,9 @@ header {
   border: none;
   width: 200px;
   border-radius: 5px;
+}
+
+.header-btn-wrapper {
+  display: flex;
+  justify-content: space-around;
 }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { toggleFav } from '../../actions';
 import  './MovieCard.scss';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user, refreshFavs }) => {
 
@@ -29,7 +30,6 @@ console.log('user is: ', user);
       <Link to={`/movies/${id}`}>
         <img 
           className='poster'
-          /*id="standardCard"*/ 
           src={`http://image.tmdb.org/t/p/w1280${poster}`} 
           alt="Movie poster" 
         />
@@ -48,3 +48,14 @@ export const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
 
+
+MovieCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  toggleFav: PropTypes.func.isRequired,
+  movie: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired
+}

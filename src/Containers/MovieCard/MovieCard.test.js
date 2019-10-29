@@ -48,7 +48,7 @@ describe('MovieCard', () => {
 
   it('should match snapshot ', () => {
 
-    expect(wrapper).toMatchSnapshot()
+    expect(favoriteWrapper).toMatchSnapshot()
   });
   
   it('should call toggleFav when favorite button is clicked', () => {
@@ -92,13 +92,32 @@ describe('mapDispatchToProps', () => {
 });
 
 describe('mapStateToProps', () => {
-  it ('should return a user object', () => {
+  
+  let  mockToggleFavorite, mockRefreshFavorites, mockUser, mockState, mockMovie;
+  
+  beforeEach (() => {
+    mockMovie = {
+      id: 100
+    }
+    mockUser = {
+      id: 1,
+      name: 'Alan',
+      email: 'alan@turing.io'
+    };
+    mockState = {
+      id: '354920',
+      title: "Han Solo",
+      date:'2019/10/28',
+      poster:'http://image.tmdb.org/t/p/w1280',
+      movie: {mockMovie},
+      isFavorite: true,
+      toggleFav:{mockToggleFavorite},
+      user: mockUser,
+      refreshFavs:{mockRefreshFavorites}
+    };
 
-    // const mockState = {
-    //   id: 1,
-    //   name: 'Alan',
-    //   email: 'alan@turing.io'
-    // } 
+  });
+  it ('should return a user object', () => {
 
     const expected = {
       id: 1,
@@ -108,6 +127,6 @@ describe('mapStateToProps', () => {
  
     const mappedProps = mapStateToProps(mockState);
 
-    expect(mappedProps).toEqual(expected)
+    expect(mappedProps.user).toEqual(expected)
   });
 }) 

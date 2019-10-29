@@ -31,7 +31,7 @@ export const CardDetails = ({ movie, refreshFavs, user, toggleFav }) => {
           <p>{overview}</p>
           <h2>Vote Average: {vote_average}</h2>
           <button 
-            className='fav-btn' 
+            className='fav-btn-wrapper' 
             type="button"
             disabled={!user}
             onClick={() => {

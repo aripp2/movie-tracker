@@ -44,6 +44,19 @@ p {
   font-size: 1.25em;
 }
 
+.fav-btn-wrapper {
+  font-size: 1.25em;
+  border: none;
+  width: 200px;
+  border-radius: 5px;
+  color: black;
+  margin: 0px auto;
+  &:hover {
+    background-color: #BC8F8F;
+    color: white;
+  }
+}
+
 .back-btn {
   font-size: 1.25em;
   border: none;

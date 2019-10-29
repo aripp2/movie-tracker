@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateAccount should match the snapshot 1`] = `
+<section
+  className="form-section"
+>
+  <form
+    className="create-account-form"
+  >
+    <h2
+      className="create-account-h2"
+    >
+      Create Account: 
+    </h2>
+    <input
+      name="name"
+      onChange={[Function]}
+      placeholder="Enter Name"
+      type="text"
+      value=""
+    />
+    <input
+      name="email"
+      onChange={[Function]}
+      placeholder="Enter Email"
+      type="text"
+      value=""
+    />
+    <input
+      name="password"
+      onChange={[Function]}
+      placeholder="Enter Password"
+      type="text"
+      value=""
+    />
+    <button
+      className="login-btn"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      Create Account
+    </button>
+  </form>
+</section>
+`;

@@ -49,12 +49,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
 
 
 MovieCard.propTypes = {
-  id: PropTypes.string.isRequired,
+  // id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   toggleFav: PropTypes.func.isRequired,
-  movie: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired
+  // movie: PropTypes.object.isRequired,
+  user: PropTypes.object
 }

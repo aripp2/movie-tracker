@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchMovies, getFavorites, addFavorite, removeFavorite } from '../../utils/apiCalls';
 import { addMovies, throwError, setFavs } from '../../actions';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
-import CardDetails from '../../Components/CardDetails/CardDetails';
+import CardDetails from '../../components/CardDetails/CardDetails';
 import CreateAccount from '../CreateAccount/CreateAccount'
 import LoginForm from '../LoginForm/LoginForm';
 import Header from '../Header/Header';

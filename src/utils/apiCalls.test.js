@@ -60,7 +60,7 @@ describe('fetchMovies', () => {
       vote_average: 7.2,
       isFavorite: false
     }
-  ]
+  ];
   const url = 'https://api.themoviedb.org/3/movie/now_playing?api_key=cee1e60becdb4297de68233fbef2f560&language=en-US';
 
   beforeEach(() => {
@@ -77,12 +77,10 @@ describe('fetchMovies', () => {
   it('should call fetchMovies with the correct url', () => {
     fetchMovies();
     expect(window.fetch).toHaveBeenCalledWith(url)
-    // passing but with errors
   });
 
   it('should return an array of movies', () => {
     expect(fetchMovies()).resolves.toEqual(mockMovies);
-    // passing but with errors
   });
 
   it('should throw an error if the response is not ok', () => {
@@ -100,7 +98,6 @@ describe('fetchMovies', () => {
     });
     expect(fetchMovies()).rejects.toEqual(Error('fetch failed'));
   });
-
 });
 
 describe('postUser', () => {
@@ -171,7 +168,7 @@ describe('postUser', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.reject(Error('fetch failed'))
     });
-    expect(fetchMovies()).rejects.toEqual(Error('fetch failed'));
+    expect(postUser(mockUser)).rejects.toEqual(Error('fetch failed'));
   });
 });
 
@@ -193,7 +190,7 @@ describe('addUser', () => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }
+  };
 
   beforeEach(() => {
     window.fetch = jest.fn().mockImplementation(() => {
@@ -210,7 +207,7 @@ describe('addUser', () => {
   });
 
   it('should return the added user', () => {
-    expect(addUser(mockNewUser)).resolves.toEqual(mockAddedUser)
+    expect(addUser(mockNewUser)).resolves.toEqual(mockAddedUser);
   });
 
   it('should throw and error if response is not ok', () => {
@@ -239,7 +236,7 @@ describe('addUser', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.reject(Error('fetch failed'))
     });
-    expect(fetchMovies()).rejects.toEqual(Error('fetch failed'));
+    expect(addUser(mockNewUser)).rejects.toEqual(Error('fetch failed'));
   });
 
 });
@@ -275,60 +272,180 @@ describe('addFavorite', () => {
         'Content-Type': 'application/json'
       }
     };
-    const mockAddedFav = 
-      {
-        id: 1,
-        movie_id: 420809,
-        overview: "Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play.",
-        poster_path: "/tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg",
-        release_date: "2019-10-18",
-        title: "Maleficent: Mistress of Evil",
-        user_id: 1,
-        vote_average: "7.2"
-      };
-    const mockId = 2;
-    const url = `http://localhost:3001/api/v1/users/${mockId}/moviefavorites`
+  const mockAddedFav = 
+    {
+      id: 1,
+      movie_id: 420809,
+      overview: "Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play.",
+      poster_path: "/tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg",
+      release_date: "2019-10-18",
+      title: "Maleficent: Mistress of Evil",
+      user_id: 1,
+      vote_average: "7.2"
+    };
+  const mockId = 2;
+  const url = `http://localhost:3001/api/v1/users/${mockId}/moviefavorites`
 
-    beforeEach(() => {
-      window.fetch = jest.fn().mockImplementation(() => {
-        return Promise.resolve({
-          ok: true,
-          json: () => Promise.resolve(mockAddedFav)
-        })
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockAddedFav)
       })
-    });
+    })
+  });
 
-    it('should call addFavorite with the correct url and options', () => {
-      addFavorite(mockId, mockMovie);
-      expect(window.fetch).toHaveBeenCalledWith(url, mockOptions);
-    });
+  it('should call addFavorite with the correct url and options', () => {
+    addFavorite(mockId, mockMovie);
+    expect(window.fetch).toHaveBeenCalledWith(url, mockOptions);
+  });
 
-    it('should return the favorited movie', () => {
-      expect(addFavorite(mockId, mockMovie)).resolves.toEqual(mockAddedFav)
-    });
+  it('should return the favorited movie', () => {
+    expect(addFavorite(mockId, mockMovie)).resolves.toEqual(mockAddedFav)
+  });
 
-    it('should throw an error is the response is not ok', () => {
-      window.fetch = jest.fn().mockImplementation(() => {
+  it('should throw an error if the response is not ok', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: false
-      })
+      });
     });
     expect(addFavorite(mockId, mockMovie)).rejects.toEqual(Error('Unable to add movie as favorite. Try again later.'));
-    });
+  });
 
-    it('should throw an error if the server is down', () => {
-      window.fetch = jest.fn().mockImplementation(() => {
-        return Promise.reject(Error('fetch failed'))
-      });
-      expect(fetchMovies()).rejects.toEqual(Error('fetch failed'));
+  it('should throw an error if the server is down', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('fetch failed'))
+    });
+    expect(addFavorite(mockId, mockMovie)).rejects.toEqual(Error('fetch failed'));
   });
 
 });
 
 describe('getFavorites', () => {
+  const mockUserId = 2;
+  const url = `http://localhost:3001/api/v1/users/${mockUserId}/moviefavorites`;
+  const mockFavs = [
+    {
+      id: 559969,
+      movie_id: 559969,
+      overview: "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
+      poster_path: "/ePXuKdXZuJx8hHMNr2yM4jY2L7Z.jpg",
+      release_date: "2019-10-11",
+      title: "El Camino: A Breaking Bad Movie",
+      user_id: 2,
+      vote_average: "7.1"
+    },
+    {
+      id: 417384,
+      movie_id: 417384,
+      overview: "Mill Valley, Pennsylvania, Halloween night, 1968. After playing a joke on a school bully, Sarah and her friends decide to sneak into a supposedly haunted house that once belonged to the powerful Bellows family, unleashing dark forces that they will be unable to control.",
+      poster_path: "/d0FWbzrmm99BTfUqf1Lbjl2zu3S.jpg",
+      release_date: "2019-08-09",
+      title: "Scary Stories to Tell in the Dark",
+      user_id: 2,
+      vote_average: "6.3"
+    }
+  ];
+
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockFavs)
+      })
+    });
+  });
+
+  it('should call getFavorites with the correct url', () => {
+    getFavorites(mockUserId);
+    expect(window.fetch).toHaveBeenCalledWith(url)
+  });
+
+  it('should return the user\'s favorites', () => {
+    expect(getFavorites(mockUserId)).resolves.toEqual(mockFavs)
+  });
+
+  it('should throw an error if the response is not ok', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+    expect(getFavorites(mockUserId)).rejects.toEqual(Error('Unable to retrieve your favorite movies as this time. Please try again later'));
+  });
+
+  it('should throw an error if the server is down', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('fetch failed'))
+    });
+    expect(getFavorites(mockUserId)).rejects.toEqual(Error('fetch failed'));
+  });
 
 });
 
 describe('removeFavorite', () => {
 
+  const mockUserId = 2;
+  const mockFavId = 559969;
+  const url = `http://localhost:3001/api/v1/users/${mockUserId}/moviefavorites/${mockFavId}`;
+  const mockFavs = [
+    {
+      id: 559969,
+      movie_id: 559969,
+      overview: "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.",
+      poster_path: "/ePXuKdXZuJx8hHMNr2yM4jY2L7Z.jpg",
+      release_date: "2019-10-11",
+      title: "El Camino: A Breaking Bad Movie",
+      user_id: 2,
+      vote_average: "7.1"
+    },
+    {
+      id: 417384,
+      movie_id: 417384,
+      overview: "Mill Valley, Pennsylvania, Halloween night, 1968. After playing a joke on a school bully, Sarah and her friends decide to sneak into a supposedly haunted house that once belonged to the powerful Bellows family, unleashing dark forces that they will be unable to control.",
+      poster_path: "/d0FWbzrmm99BTfUqf1Lbjl2zu3S.jpg",
+      release_date: "2019-08-09",
+      title: "Scary Stories to Tell in the Dark",
+      user_id: 2,
+      vote_average: "6.3"
+    }
+  ];
+
+  const mockOptions = 
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true
+      })
+    });
+  }); 
+
+  it('should call removeFavorite with the correct url and options', () => {
+    removeFavorite(mockUserId, mockFavId)
+    expect(window.fetch).toHaveBeenCalledWith(url,mockOptions)
+  });
+
+  it('should throw an error if the response is not ok', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      });
+    });
+    expect(removeFavorite(mockUserId, mockFavId)).rejects.toEqual(Error('Unable to remove this movie as a favorite at this time. Please try again later'));
+  });
+
+  it('should throw an error if the server is down', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('fetch failed'))
+    });
+    expect(removeFavorite(mockUserId, mockFavId)).rejects.toEqual(Error('fetch failed'));
+  });
 });

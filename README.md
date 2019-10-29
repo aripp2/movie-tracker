@@ -50,7 +50,7 @@ In addition to viewing the latest and greatest movies, users can also log in, lo
 
 
 ### Logged-in home page:
-![Logged-in home page screenshot](./src/images/logged-in-home-page.png)
+
 
 ### Favorites page:
 <img width="1263" alt="Movie Tracker Favorites" src="https://user-images.githubusercontent.com/17992280/67813478-3ccaa600-fa67-11e9-9841-01152a9655f9.png">

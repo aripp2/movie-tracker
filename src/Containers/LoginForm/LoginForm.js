@@ -33,7 +33,7 @@ export class LoginForm extends Component {
       this.setState({ error: message })
     }
     this.clearInputs()
-  }
+  }   
 
   clearInputs = () => {
     this.setState({ email: '', password:''})

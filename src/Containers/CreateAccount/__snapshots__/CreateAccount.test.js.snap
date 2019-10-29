@@ -1,11 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-
-exports[`LoginForm should match the snapshot 1`] = `
+exports[`CreateAccount should match the snapshot 1`] = `
 <section
   className="form-section"
 >
-  <form>
+  <form
+    className="create-account-form"
+  >
+    <h2
+      className="create-account-h2"
+    >
+      Create Account: 
+    </h2>
+    <input
+      name="name"
+      onChange={[Function]}
+      placeholder="Enter Name"
+      type="text"
+      value=""
+    />
     <input
       name="email"
       onChange={[Function]}
@@ -26,18 +39,8 @@ exports[`LoginForm should match the snapshot 1`] = `
       onClick={[Function]}
       type="button"
     >
-      Login
+      Create Account
     </button>
-    <Link
-      to="/createaccount"
-    >
-      <button
-        className="create-account-btn"
-        type="button"
-      >
-        Create Account
-      </button>
-    </Link>
   </form>
 </section>
 `;

@@ -1,4 +1,4 @@
-# Tune In Later
+# Movie Tracker
 
 ## Authors:
 * J. Eduardo Rodriguez ([JEduardoRJx](https://github.com/JEduardoRJx))

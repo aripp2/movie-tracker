@@ -11,26 +11,15 @@ import { BrowserRouter } from 'react-router-dom'
 
 const store = createStore(rootReducer, composeWithDevTools());
 
-
+const router = (
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+)
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </BrowserRouter>, 
-  document.getElementById('root'));
-  
-serviceWorker.unregister();
-// const router = (
-//   <BrowserRouter>
-//     <App />
-//   </BrowserRouter>
-// )
-
-// ReactDOM.render(
-// <Provider store={store}>
-//   {router}
-// </Provider>,
-// document.getElementById('root'));
+<Provider store={store}>
+  {router}
+</Provider>,
+document.getElementById('root'));
 

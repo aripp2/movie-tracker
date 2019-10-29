@@ -11,7 +11,6 @@ export const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFa
 
   const favStatus = isFavorite ? 'Remove Favorite' : 'Add Favorite';
   const toggleFavColor = isFavorite ? 'favorited' : '';
-console.log('user is: ', user);
   return (
     <article className='movie-card' id={id}>
       <div className='movie-details'>

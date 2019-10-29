@@ -1,10 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { App } from './App'
-import { fetchMovies, getFavorites, addFavorite} from '../../utils/apiCalls'
+import { App } from './App';
+import { fetchMovies, getFavorites, addFavorite} from '../../utils/apiCalls';
 jest.mock('../../utils/apiCalls');
-
-
 
 describe('App', () => {
   let wrapper;
@@ -15,7 +13,7 @@ describe('App', () => {
     id: 2, 
     name: "Alex", 
     email: "alex@gmail.com"
-  }
+  };
   const mockMovies = [{
     backdrop_path: "/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
     genre_ids: (3) [80, 18, 53],
@@ -43,7 +41,7 @@ describe('App', () => {
       movies={mockMovies} 
       setFavs={mockSetFavs}
       />);
-  })
+  });
 
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
@@ -52,7 +50,7 @@ describe('App', () => {
   it('should set movies when fetch movies is called', () => {
     expect(fetchMovies).toHaveBeenCalled();
     expect(mockAddMovies).toHaveBeenCalledWith(mockMovies);
-  })
+  });
   
   it('should be able to favorite a movie and get favorites', async () => {
     await wrapper.instance().refreshFavs(mockMovies[0]);
@@ -60,5 +58,4 @@ describe('App', () => {
     expect(getFavorites).toHaveBeenCalledWith(2);
     expect(mockSetFavs).toHaveBeenCalledWith(mockFaves);
   });
-
-})
+});

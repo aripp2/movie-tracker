@@ -1,5 +1,5 @@
 const baseUrl = 'https://api.themoviedb.org/3/movie/now_playing?';
-const apiKey = '1b20ae1afe685b2871c8d94218f89eba';
+// const apiKey = '1b20ae1afe685b2871c8d94218f89eba';
 const apiKey2 = 'cee1e60becdb4297de68233fbef2f560';
 
 export const fetchMovies = async () => {

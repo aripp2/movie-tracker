@@ -5,17 +5,24 @@ import { toggleFav } from '../../actions/index';
 
 describe ('CardDetails', () => {
   let wrapper;
+  const movie = {
+    backdrop_path: "/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
+    genre_ids: (3) [80, 18, 53],
+    id: 475557,
+    isFavorite: false,
+    overview: "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+    poster_path: "/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
+    release_date: "2019-10-04",
+    title: "Joker",
+    vote_average: 8.6,
+  }
 
   it('should match the snapshot with all data passed in correctly', () => {
     wrapper = shallow(<CardDetails 
-      backdrop_path='http://image.tmdb.org/t/p/w1280'
-      title = 'Joker'
-      releaseDate= 'Oct 04 2019'
-      overview= 'During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.'
-      vote_average= '8.6'
+      movie={movie}
       />)
 
-    expect(wrapper).toMatchSnapshotO();
+    expect(wrapper).toMatchSnapshot();
 
   });
 });

@@ -41,9 +41,9 @@ class CreateAccount extends Component {
     }
     return (
       <section className='form-section'>
-        {this.state.error && <h2>{this.state.error}</h2>}
+        {this.state.error && <h2 className='error-msg'>{this.state.error}</h2>}
         <form className='create-account-form'>
-          <h2>Create Account: </h2>
+          <h2 className='create-account-h2'>Create Account: </h2>
           <input 
             type='text' 
             placeholder='Enter Name'

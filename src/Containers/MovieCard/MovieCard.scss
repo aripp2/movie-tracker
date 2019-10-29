@@ -20,9 +20,10 @@
   border: none;
   width: 200px;
   border-radius: 5px;
-  background-color: lightgray;
+  color: black;
   &:hover {
     background-color: #BC8F8F;
+    color: white;
   }
 }
 
@@ -34,4 +35,9 @@
     transform: scale(1.1);
     transform-origin: top;
   }
+}
+
+.favorited {
+  background-color: #BC8F8F;
+  color: white;
 }

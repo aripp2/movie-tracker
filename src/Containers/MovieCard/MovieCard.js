@@ -27,7 +27,12 @@ const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user
         >{favStatus}</button>
       </div>
       <Link to={`/movies/${id}`}>
-        <img className='poster'/*id="standardCard"*/ src={`http://image.tmdb.org/t/p/w1280${poster}`} alt="Movie poster" />
+        <img 
+          className='poster'
+          /*id="standardCard"*/ 
+          src={`http://image.tmdb.org/t/p/w1280${poster}`} 
+          alt="Movie poster" 
+        />
       </Link>
     </article>
   )

@@ -14,11 +14,17 @@ const CardDetails = ({ movie, refreshFavs, user, toggleFav }) => {
 
   return (
     <section className="cardDetails">
-      <img className='movie-backdrop' src={`http://image.tmdb.org/t/p/w1280${backdrop_path}`} alt='movie backdrop' />
-
-
+      <img 
+        className='movie-backdrop' 
+        src={`http://image.tmdb.org/t/p/w1280${backdrop_path}`} 
+        alt='movie backdrop' 
+      />
       <article className='movie-details-wrapper'>
-        <img className='movie-poster' src={`http://image.tmdb.org/t/p/w1280${poster_path}`} alt='movie poster' />
+        <img 
+          className='movie-poster' 
+          src={`http://image.tmdb.org/t/p/w1280${poster_path}`} 
+          alt='movie poster' 
+        />
         <div className='movie-info-wrapper'>
           <h1 className='movie-title'>{title}</h1>
           <h2>Released: {releaseDate}</h2>

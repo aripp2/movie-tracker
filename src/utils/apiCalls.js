@@ -33,7 +33,7 @@ export const postUser = async user => {
     throw Error('Sorry, unable to retrieve your account. Try again later.')
   }
   const foundUser = await response.json();
-  if (!response.ok && response.status === 401) {
+  if (response.status === 401) {
     throw new Error('Username or password incorrect')
   }
   return foundUser;
@@ -57,7 +57,7 @@ export const addUser = async user => {
      throw Error('Sorry, unable to create your account. Try again later.')
   }
   const newUser = await response.json();
-    if (!response.ok && response.status === 500) {
+    if (response.status === 500) {
       throw new Error('There is already an account with this email. Go to login or use another email address.')
   }
   return newUser;

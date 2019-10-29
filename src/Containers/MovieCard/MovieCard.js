@@ -9,6 +9,7 @@ const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user
   const fixedDate = new Date(date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
 
   const favStatus = isFavorite ? 'Remove Favorite' : 'Add Favorite';
+  const toggleFavColor = isFavorite ? 'favorited' : '';
 
   return (
     <article className='movie-card' id={id}>
@@ -16,7 +17,7 @@ const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user
         <h2>{title}</h2>
         <h3>{fixedDate}</h3>
         <button 
-          className='fav-btn' 
+          className={`fav-btn ${toggleFavColor}`}
           type="button"
           disabled={!user}
           onClick={() => {

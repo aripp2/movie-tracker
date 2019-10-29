@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { toggleFav } from '../../actions';
 import  './MovieCard.scss';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user, refreshFavs }) => {
+export const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user, refreshFavs }) => {
 
   const fixedDate = new Date(date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
 
   const favStatus = isFavorite ? 'Remove Favorite' : 'Add Favorite';
   const toggleFavColor = isFavorite ? 'favorited' : '';
-
+console.log('user is: ', user);
   return (
     <article className='movie-card' id={id}>
       <div className='movie-details'>
@@ -29,7 +30,6 @@ const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user
       <Link to={`/movies/${id}`}>
         <img 
           className='poster'
-          /*id="standardCard"*/ 
           src={`http://image.tmdb.org/t/p/w1280${poster}`} 
           alt="Movie poster" 
         />
@@ -38,13 +38,24 @@ const MovieCard = ({ id, title, date, poster, movie, isFavorite, toggleFav, user
   )
 }
 
-const mapStateToProps = ({ user }) => ({
+export const mapStateToProps = ({ user }) => ({
   user
 })
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   toggleFav: id => dispatch(toggleFav(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
 
+
+MovieCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+  toggleFav: PropTypes.func.isRequired,
+  movie: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired
+}

@@ -4,11 +4,34 @@ import { MovieCard, mapStateToProps, mapDispatchToProps } from './MovieCard';
 import { toggleFav } from '../../actions/index';
 
 describe('MovieCard', () => {
-  let wrapper, favoriteWrapper, mockToggleFavorite, mockRefreshFavorites;
+  let wrapper, favoriteWrapper, mockToggleFavorite, mockRefreshFavorites, mockUser, mockState, mockMovie;
 
   beforeEach(() => {
     mockToggleFavorite = jest.fn();
     mockRefreshFavorites = jest.fn();
+    mockUser = {
+      id: 1,
+      name: 'Alan',
+      email: 'alan@turing.io'
+    };
+
+    mockState = {
+      id: '354920',
+      title: "Han Solo",
+      date:'2019/10/28',
+      poster:'http://image.tmdb.org/t/p/w1280',
+      movie: {mockMovie},
+      isFavorite: true,
+      toggleFav:{mockToggleFavorite},
+      user:{mockUser},
+      refreshFavs:{mockRefreshFavorites}
+    };
+
+    mockMovie = {
+      id: 100
+    }
+
+
 
     favoriteWrapper = shallow (<MovieCard 
       id= '354920'
@@ -18,7 +41,7 @@ describe('MovieCard', () => {
       movie
       isFavorite
       toggleFav={mockToggleFavorite}
-      user
+      user={mockUser}
       refreshFavs={mockRefreshFavorites}
     />)
   });
@@ -28,7 +51,7 @@ describe('MovieCard', () => {
     expect(wrapper).toMatchSnapshot()
   });
   
-  it('should call toggleFav when favorite icon is clicked', () => {
+  it('should call toggleFav when favorite button is clicked', () => {
 
     const mockEvent = { preventDefault: jest.fn() }
 
@@ -71,11 +94,11 @@ describe('mapDispatchToProps', () => {
 describe('mapStateToProps', () => {
   it ('should return a user object', () => {
 
-    const mockState = {
-      id: 1,
-      name: 'Alan',
-      email: 'alan@turing.io'
-    } 
+    // const mockState = {
+    //   id: 1,
+    //   name: 'Alan',
+    //   email: 'alan@turing.io'
+    // } 
 
     const expected = {
       id: 1,

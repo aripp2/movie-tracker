@@ -37,12 +37,11 @@ In addition to viewing the latest and greatest movies, users can also log in, lo
 
 ### Home page:
 
-<img width="1113" alt="Movie Tracker Login Screen" src="https://user-images.githubusercontent.com/17992280/67812879-ce391880-fa65-11e9-9c13-dda9a0d80c1b.png">
-
-![Home screenshot](<img width="1113" alt="Movie Tracker Home Screen" src="https://user-images.githubusercontent.com/17992280/67812874-caa59180-fa65-11e9-85c0-0e37788a4ce0.png">)
+<img width="1113" alt="Movie Tracker Home Screen" src="https://user-images.githubusercontent.com/17992280/67812874-caa59180-fa65-11e9-85c0-0e37788a4ce0.png">
 
 ### Log-in form:
-![Log-in form screenshot](<img width="1113" alt="Movie Tracker Login Screen" src="https://user-images.githubusercontent.com/17992280/67812879-ce391880-fa65-11e9-9c13-dda9a0d80c1b.png">)
+
+<img width="1113" alt="Movie Tracker Login Screen" src="https://user-images.githubusercontent.com/17992280/67812879-ce391880-fa65-11e9-9c13-dda9a0d80c1b.png">
 
 ### Signup form:
 ![Signup form screenshot](./src/images/sign-up.png)

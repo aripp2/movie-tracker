@@ -51,6 +51,8 @@ In addition to viewing the latest and greatest movies, users can also log in, lo
 
 ### Logged-in home page:
 
+<img width="1263" alt="Movie Tracker Logged-in Homepage" src="https://user-images.githubusercontent.com/17992280/67813674-c0849280-fa67-11e9-9ef8-27509f3b34a6.png">
+
 
 ### Favorites page:
 <img width="1263" alt="Movie Tracker Favorites" src="https://user-images.githubusercontent.com/17992280/67813478-3ccaa600-fa67-11e9-9841-01152a9655f9.png">

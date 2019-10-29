@@ -56,7 +56,7 @@ describe('CreateAccount', () => {
       password: '',
       error: '',
       success: false
-    }
+    };
     wrapper.instance().setState(mockState);
     expect(wrapper.state()).toEqual(mockState );
     wrapper.instance().clearInputs();
@@ -69,4 +69,19 @@ describe('CreateAccount', () => {
     wrapper.find('button').simulate('click');
     expect(wrapper.instance().createAccount).toHaveBeenCalled();
   });
+
+  // it('should invoke addUser when createAccount is called', () => {
+  //   wrapper.instance().createAccount = jest.fn();
+  //   wrapper.instance().forceUpdate();
+  //   wrapper.find('button').simulate('click');
+  //   addUser.mockImplementation(() => Promise.resolve({id:2, name: 'Amy', email: 'email'}));
+  //   expect(addUser).toHaveBeenCalled();
+  // });
+
+  // it('should update state when addUser is successful', () => {
+  //   addUser.mockImplementation(() => Promise.resolve({id:2, name: 'Amy', email: 'email'}))
+  //   wrapper.instance().createAccount = jest.fn();
+  //   wrapper.instance().forceUpdate();
+  //   expect(wrapper.state('success')).toEqual(true);
+  // });
 });

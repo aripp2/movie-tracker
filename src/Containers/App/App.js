@@ -26,17 +26,16 @@ class App extends Component {
   refreshFavs = async (movie) => {
     const { throwError, setFavs, user } = this.props;
     try {
-    if (movie.isFavorite) {
-      await removeFavorite(user.id, movie.id)
-    } else {
-      await addFavorite(user.id, movie)
-    }
-    const updatedFavs = await getFavorites(user.id)
-    setFavs(updatedFavs)
-    } catch ({ message }) {
-      throwError(message)
-    }
-
+      if (movie.isFavorite) {
+        await removeFavorite(user.id, movie.id)
+      } else {
+        await addFavorite(user.id, movie)
+      }
+        const updatedFavs = await getFavorites(user.id)
+        setFavs(updatedFavs)
+      } catch ({ message }) {
+        throwError(message)
+      }
   } 
 
   render() {

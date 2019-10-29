@@ -53,7 +53,7 @@ export class App extends Component {
             path="/movies/:id"
             render={({ match }) => {
               let foundMovie = this.props.movies.find(movie => {
-                return parseInt(movie.id) == match.params.id;
+                return movie.id === parseInt(match.params.id);
               });
               return (
                 <CardDetails
@@ -69,13 +69,13 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = ({ errorMsg, user, movies }) => ({
+export const mapStateToProps = ({ errorMsg, user, movies }) => ({
   errorMsg,
   user,
   movies
 })
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   addMovies: movies => dispatch(addMovies(movies)),
   throwError: errorMsg => dispatch(throwError(errorMsg)),
   setFavs: favs => dispatch(setFavs(favs)) 

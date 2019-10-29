@@ -1,7 +1,7 @@
 import { fetchMovies, postUser, addUser, addFavorite, getFavorites, removeFavorite } from './apiCalls';
 
 describe('fetchMovies', () => {
-  const mockResponse = {results:[
+  const mockResponse = [
       {
         adult: false,
         backdrop_path: "/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
@@ -34,7 +34,7 @@ describe('fetchMovies', () => {
         vote_average: 7.2,
         vote_count: 472
       }
-    ]};
+    ];
   const mockMovies = [
     {
       backdrop_path: "/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
@@ -68,18 +68,19 @@ describe('fetchMovies', () => {
       return Promise.resolve({
         ok: true,
         json: () => Promise.resolve({
-          mockMovies: () => Promise.resolve(mockResponse)})
+          results: mockResponse
+         })
       })
     })
   });
 
-  it.skip('should call fetchMovies with the correct url', () => {
+  it('should call fetchMovies with the correct url', () => {
     fetchMovies();
     expect(window.fetch).toHaveBeenCalledWith(url)
     // passing but with errors
   });
 
-  it.skip('should return an array of movies', () => {
+  it('should return an array of movies', () => {
     expect(fetchMovies()).resolves.toEqual(mockMovies);
     // passing but with errors
   });
@@ -153,16 +154,16 @@ describe('postUser', () => {
     expect(postUser(mockUser)).rejects.toEqual(Error('Sorry, unable to retrieve your account. Try again later.'))
   });
 
-  it.skip('should throw error if username or password are incorrect', () => {
+  it('should throw error if username or password are incorrect', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: true,
+        status: 401,
         json: () => Promise.resolve({
           status: 401
         })
       })
     })
-    // passing but with errors
     expect(postUser(mockBadUser)).rejects.toEqual(Error('Username or password incorrect'))
   });
 
@@ -203,7 +204,7 @@ describe('addUser', () => {
     });
   });
 
-  it('should call addUser with the correct url', () => {
+  it('should call addUser with the correct url and options', () => {
     addUser(mockNewUser);
     expect(window.fetch).toHaveBeenCalledWith(url, mockOptions);
   });
@@ -221,16 +222,16 @@ describe('addUser', () => {
     expect(addUser(mockNewUser)).rejects.toEqual(Error('Sorry, unable to create your account. Try again later.'));
   });
 
-  it.skip('should throw and error if email already has an account', () => {
+  it('should throw and error if email already has an account', () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         ok: true,
+        status: 500,
         json: () => Promise.resolve({  
           status: 500
         })
       })
     });
-    // passing with errors
     expect(addUser(mockNewUser)).rejects.toEqual(Error('There is already an account with this email. Go to login or use another email address.'));
   });
 
@@ -244,6 +245,83 @@ describe('addUser', () => {
 });
 
 describe('addFavorite', () => {
+
+  const mockMovie = 
+    {
+      backdrop_path: "/skvI4rYFrKXS73BJxWGH54Omlvv.jpg",
+      genre_ids: [12, 14, 10751],
+      id: 420809,
+      isFavorite: false,
+      overview: "Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play.",
+      poster_path: "/tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg",
+      release_date: "2019-10-18",
+      title: "Maleficent: Mistress of Evil",
+      vote_average: 7.2,
+      isFavorite: false
+    };
+
+  const mockOptions = 
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        movie_id: mockMovie.id, 
+        title: mockMovie.title, 
+        poster_path: mockMovie.poster_path, 
+        release_date: mockMovie.release_date, 
+        vote_average: mockMovie.vote_average, 
+        overview: mockMovie.overview
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const mockAddedFav = 
+      {
+        id: 1,
+        movie_id: 420809,
+        overview: "Maleficent and her goddaughter Aurora begin to question the complex family ties that bind them as they are pulled in different directions by impending nuptials, unexpected allies, and dark new forces at play.",
+        poster_path: "/tBuabjEqxzoUBHfbyNbd8ulgy5j.jpg",
+        release_date: "2019-10-18",
+        title: "Maleficent: Mistress of Evil",
+        user_id: 1,
+        vote_average: "7.2"
+      };
+    const mockId = 2;
+    const url = `http://localhost:3001/api/v1/users/${mockId}/moviefavorites`
+
+    beforeEach(() => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockAddedFav)
+        })
+      })
+    });
+
+    it('should call addFavorite with the correct url and options', () => {
+      addFavorite(mockId, mockMovie);
+      expect(window.fetch).toHaveBeenCalledWith(url, mockOptions);
+    });
+
+    it('should return the favorited movie', () => {
+      expect(addFavorite(mockId, mockMovie)).resolves.toEqual(mockAddedFav)
+    });
+
+    it('should throw an error is the response is not ok', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      })
+    });
+    expect(addFavorite(mockId, mockMovie)).rejects.toEqual(Error('Unable to add movie as favorite. Try again later.'));
+    });
+
+    it('should throw an error if the server is down', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      });
+      expect(fetchMovies()).rejects.toEqual(Error('fetch failed'));
+  });
 
 });
 

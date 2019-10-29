@@ -28,7 +28,7 @@ describe('App', () => {
     vote_average: 8.6,
     isFavorite: false
   }];
-  const mockFaves = [mockMovies[0]]
+  const mockFaves = [mockMovies[0]];
 
   fetchMovies.mockImplementation(() => Promise.resolve(mockMovies));
   addFavorite.mockImplementation(() => Promise.resolve(mockUser.id, mockMovies[0]));
@@ -56,10 +56,9 @@ describe('App', () => {
   
   it('should be able to favorite a movie and get favorites', async () => {
     await wrapper.instance().refreshFavs(mockMovies[0]);
-    expect(addFavorite).toHaveBeenCalledWith(mockUser.id, mockMovies[0])
+    expect(addFavorite).toHaveBeenCalledWith(mockUser.id, mockMovies[0]);
     expect(getFavorites).toHaveBeenCalledWith(2);
     expect(mockSetFavs).toHaveBeenCalledWith(mockFaves);
-  })
-
+  });
 
 })

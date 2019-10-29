@@ -6,7 +6,7 @@ import './CardDetails.scss';
 import PropTypes from 'prop-types';
 
 export const CardDetails = ({ movie, refreshFavs, user, toggleFav }) => {
-  const {backdrop_path, genre_ids, id, isFavorite, overview, poster_path, release_date, title, vote_average} = movie;
+  const {backdrop_path, id, isFavorite, overview, poster_path, release_date, title, vote_average} = movie;
 
   const releaseDate = new Date(release_date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
 
@@ -65,6 +65,5 @@ CardDetails.propTypes = {
   title: PropTypes.string.isRequired,
   release_date: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
-  release_date: PropTypes.string.isRequired,
   vote_average: PropTypes.string.isRequired
 }

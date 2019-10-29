@@ -53,7 +53,7 @@ class App extends Component {
             path="/movies/:id"
             render={({ match }) => {
               let foundMovie = this.props.movies.find(movie => {
-                return parseInt(movie.id) == match.params.id;
+                return parseInt(movie.id) === match.params.id;
               });
               return (
                 <CardDetails

@@ -3,7 +3,7 @@
 ## Authors:
 * J. Eduardo Rodriguez ([JEduardoRJx](https://github.com/JEduardoRJx))
 * Amy Rippeto ([aripp2](https://github.com/aripp2))
-* Jon O'Drobinak ([TripleManus](https://github.com/Triplemanus))
+* Jon O'Drobinak ([Triplemanus](https://github.com/Triplemanus))
 
 ## Overview
 Movie Tracker is a web application that allows users to view the latest Holywood movies via the [The Movie DB API](https://www.themoviedb.org/documentation/api).

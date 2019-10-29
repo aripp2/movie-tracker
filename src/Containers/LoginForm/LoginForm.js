@@ -6,7 +6,7 @@ import { setUser, setFavs, updateFavs } from '../../actions';
 import './LoginForm.scss';
 
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -79,11 +79,11 @@ class LoginForm extends Component {
   } 
 }
 
-const mapStateToProps = ({ user }) => ({
+export const mapStateToProps = ({ user }) => ({
   user
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   setUser: user => dispatch(setUser(user)),
   setFavs: favs => dispatch(setFavs(favs)),
   updateFavs: favs => dispatch(updateFavs(favs))

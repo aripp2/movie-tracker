@@ -107,7 +107,6 @@ export const removeFavorite = async (userId, favId) => {
   }
   const response = await fetch(url, options)
   if(!response.ok) {
-    console.log('delete fav err', response)
     throw Error('Unable to remove this movie as a favorite at this time. Please try again later')
   }
 }

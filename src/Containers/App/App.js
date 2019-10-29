@@ -9,7 +9,6 @@ import CreateAccount from '../CreateAccount/CreateAccount'
 import LoginForm from '../LoginForm/LoginForm';
 import Header from '../Header/Header';
 import './App.scss';
-// import PropTypes from 'prop-types';
 
 class App extends Component {
 
@@ -26,22 +25,20 @@ class App extends Component {
   refreshFavs = async (movie) => {
     const { throwError, setFavs, user } = this.props;
     try {
-    if (movie.isFavorite) {
-      await removeFavorite(user.id, movie.id)
-    } else {
-      await addFavorite(user.id, movie)
-    }
-    const updatedFavs = await getFavorites(user.id)
-    setFavs(updatedFavs)
-    } catch ({ message }) {
-      throwError(message)
-    }
-
+      if (movie.isFavorite) {
+        await removeFavorite(user.id, movie.id)
+      } else {
+        await addFavorite(user.id, movie)
+      }
+        const updatedFavs = await getFavorites(user.id)
+        setFavs(updatedFavs)
+      } catch ({ message }) {
+        throwError(message)
+      }
   } 
 
   render() {
     const { errorMsg, user } = this.props
-    console.log("user in app render", user)
     return (
       <div className="App">
         <Header />

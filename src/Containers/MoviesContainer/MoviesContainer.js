@@ -7,7 +7,6 @@ const MoviesContainer = ({ viewAll, movies, favorites, refreshFavs }) => {
   const view = viewAll ? movies : favorites;
   const makeCards = view.map(
     movie => {
-  console.log('in container', movie)
     return <MovieCard 
       key={movie.id}
       id={movie.id}

@@ -1,22 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toggleFav } from '../../actions';
 import './CardDetails.scss';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-const CardDetails = ({ movie }) => {
+const CardDetails = ({ movie, refreshFavs, user, toggleFav }) => {
   const {backdrop_path, genre_ids, id, isFavorite, overview, poster_path, release_date, title, vote_average} = movie;
 
-  // let releaseDate = release_date.split('-')
-  // releaseDate = `${releaseDate[1]}/${releaseDate[2]}/${releaseDate[0]}`   
+  const releaseDate = new Date(release_date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
 
-  const releaseDate = new Date(movie.release_date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
-
+  const favStatus = isFavorite ? 'Remove Favorite' : 'Add Favorite';
 
   return (
     <section className="cardDetails">
-      {/* <Link to={`${returnRoute}`} className='back-btn'>◀ back</Link> */}
-
-      <img className='movie-backdrop' src={`http://image.tmdb.org/t/p/w1280${backdrop_path}`} alt='movie default backdrop image' />
+      <img className='movie-backdrop' src={`http://image.tmdb.org/t/p/w1280${backdrop_path}`} alt='movie backdrop' />
 
 
       <article className='movie-details-wrapper'>
@@ -26,20 +24,36 @@ const CardDetails = ({ movie }) => {
           <h2>Released: {releaseDate}</h2>
           <p>{overview}</p>
           <h2>Vote Average: {vote_average}</h2>
+          <button 
+            className='fav-btn' 
+            type="button"
+            disabled={!user}
+            onClick={() => {
+              toggleFav(id);
+              refreshFavs(movie);
+            }}
+          >{favStatus}</button>
           <Link to='/'>
-            <button className='back-btn' type='button'>
-              ◀ back
-            </button>
+            <button 
+              className='back-btn' 
+              type='button'
+            >◀ back</button>
           </Link>
         </div>
       </article>
-
-
     </section>
   )
 }
 
-export default CardDetails;
+const mapStateToProps = ({ user }) => ({
+  user
+})
+
+const mapDispatchToProps = dispatch => ({
+  toggleFav: id => dispatch(toggleFav(id))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardDetails);
 
 CardDetails.propTypes = {
   artist_name: PropTypes.string,

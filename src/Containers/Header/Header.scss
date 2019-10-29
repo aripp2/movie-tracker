@@ -12,6 +12,11 @@ header {
   border: none;
   width: 200px;
   border-radius: 5px;
+  &:hover:enabled  {
+    color: white;
+    background-color: #BC8F8F;
+    cursor: pointer;
+  }
 }
 
 .header-btn-wrapper {

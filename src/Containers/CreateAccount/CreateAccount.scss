@@ -1,3 +1,9 @@
-label {
+.form-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-account-h2,
+.error-msg {
   color: white;
 }

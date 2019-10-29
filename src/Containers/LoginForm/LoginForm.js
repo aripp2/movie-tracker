@@ -46,7 +46,7 @@ class LoginForm extends Component {
     return (
       <section className='form-section'>
         <form>
-          {this.state.error && <h2>{this.state.error}</h2>}
+          {this.state.error && <h2 className='error-msg'>{this.state.error}</h2>}
           <input 
             type='text' 
             placeholder='Enter Email'
@@ -69,7 +69,7 @@ class LoginForm extends Component {
           >Login</button>
           <Link to='/createaccount'>
             <button 
-              className='login-btn' 
+              className='create-account-btn' 
               type='button' 
             >Create Account</button>
           </Link>

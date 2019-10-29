@@ -32,7 +32,6 @@ class App extends Component {
       await addFavorite(user.id, movie)
     }
     const updatedFavs = await getFavorites(user.id)
-    console.log('updatedFavs in app', updatedFavs)
     setFavs(updatedFavs)
     } catch ({ message }) {
       throwError(message)
@@ -63,6 +62,7 @@ class App extends Component {
                 <CardDetails
                   key={foundMovie.id}
                   movie={foundMovie}
+                  refreshFavs={this.refreshFavs}
               />
             );
           }}

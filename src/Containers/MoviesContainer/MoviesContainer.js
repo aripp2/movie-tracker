@@ -4,10 +4,13 @@ import  MovieCard from '../MovieCard/MovieCard';
 import './MoviesContainer.scss';
 
 const MoviesContainer = ({ viewAll, movies, favorites, refreshFavs }) => {
-  const view = viewAll ? movies : favorites;
-  const makeCards = view.map(
+  // const view = viewAll ? movies : favorites;
+  const makeCards = movies.map(
     movie => {
-  console.log('in container', movie)
+      // const filmId = viewAll ? movie.id : movie.movie_id;
+      // const status = viewAll ? movie.isFavorte : true;
+      // console.log('status', status)
+  // console.log('in container', movie)
     return <MovieCard 
       key={movie.id}
       id={movie.id}

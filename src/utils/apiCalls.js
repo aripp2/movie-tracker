@@ -84,6 +84,7 @@ export const addFavorite = async (userId, movie) => {
     throw Error('Unable to add movie as favorite. Try again later.')
   }
   const addedFav = await response.json();
+  console.log('addedFav call', addedFav)
   return addedFav;
 }
 
@@ -94,6 +95,7 @@ export const getFavorites = async userId => {
     throw Error('Unable to retrieve your favorite movies as this time. Please try again later')
   }
   const favoriteMovies = await response.json()
+  console.log('favoriteMovies call', favoriteMovies)
   return favoriteMovies
 }
 

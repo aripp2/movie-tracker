@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchMovies, getFavorites, addFavorite, removeFavorite } from '../../utils/apiCalls';
 import { addMovies, throwError, setFavs } from '../../actions';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import FavoritesContainer from '../FavoritesContainer/FavoritesContainer';
 import CardDetails from '../../components/CardDetails/CardDetails';
 import CreateAccount from '../CreateAccount/CreateAccount'
 import LoginForm from '../LoginForm/LoginForm';
@@ -27,7 +28,7 @@ class App extends Component {
     const { throwError, setFavs, user } = this.props;
     try {
       if (movie.isFavorite) {
-        await removeFavorite(user.id, movie.id)
+        await removeFavorite(user.id, movie.movie_id)
       } else {
         await addFavorite(user.id, movie)
       }
@@ -40,17 +41,16 @@ class App extends Component {
 
   render() {
     const { errorMsg, user } = this.props
-    console.log("user in app render", user)
     return (
       <div className="App">
         <Header />
           {errorMsg && <h2>{errorMsg}</h2>}
-          <Route exact path='/' render={() => <MoviesContainer viewAll={true} refreshFavs={this.refreshFavs}/>}/>
+          <Route exact path='/' render={() => <MoviesContainer  refreshFavs={this.refreshFavs}/>}/>
           <Route exact path='/login' 
             render={() => <LoginForm />} />
           <Route exact path='/createaccount' 
             render={() => <CreateAccount />} />
-          <Route exact path='/favorites' render={() => <MoviesContainer viewAll={false} refreshFavs={this.refreshFavs}/>}/>
+          <Route exact path='/favorites' render={() => <FavoritesContainer refreshFavs={this.refreshFavs}/>}/>
           <Route
             path="/movies/:id"
             render={({ match }) => {

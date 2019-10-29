@@ -38,6 +38,11 @@ const Header = ({ user, setUser, clearFavs, favorites }) => {
             disabled={!user}
           >View Favorites</button>
         </Link>
+        <Link to='/'>
+          <button 
+            className='home nav-btn'
+          >Back to All Movies</button>
+        </Link>
       </div>
     </header>
   )

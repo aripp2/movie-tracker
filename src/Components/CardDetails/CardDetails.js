@@ -65,9 +65,5 @@ CardDetails.propTypes = {
   movie: PropTypes.object,
   refreshFavs: PropTypes.func,
   toggleFavs: PropTypes.func,
-  user: PropTypes.object,
-  title: PropTypes.string.isRequired,
-  releaseDate: PropTypes.string.isRequired,
-  overview: PropTypes.string.isRequired,
-  vote_average: PropTypes.string.isRequired
+  user: PropTypes.object
 }

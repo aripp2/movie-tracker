@@ -58,5 +58,4 @@ describe('App', () => {
     expect(getFavorites).toHaveBeenCalledWith(2);
     expect(mockSetFavs).toHaveBeenCalledWith(mockFaves);
   });
-
 });

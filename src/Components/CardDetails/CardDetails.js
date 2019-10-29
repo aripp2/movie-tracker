@@ -5,8 +5,8 @@ import { toggleFav } from '../../actions';
 import './CardDetails.scss';
 import PropTypes from 'prop-types';
 
-const CardDetails = ({ movie, refreshFavs, user, toggleFav }) => {
-  const {backdrop_path, genre_ids, id, isFavorite, overview, poster_path, release_date, title, vote_average} = movie;
+export const CardDetails = ({ movie, refreshFavs, user, toggleFav }) => {
+  const {backdrop_path, id, isFavorite, overview, poster_path, release_date, title, vote_average} = movie;
 
   const releaseDate = new Date(release_date + 'T00:00').toString().split(' ').slice(1, 4).join(' ');
 
@@ -51,21 +51,23 @@ const CardDetails = ({ movie, refreshFavs, user, toggleFav }) => {
   )
 }
 
-const mapStateToProps = ({ user }) => ({
+export const mapStateToProps = ({ user }) => ({
   user
 })
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   toggleFav: id => dispatch(toggleFav(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardDetails);
 
 CardDetails.propTypes = {
-  artist_name: PropTypes.string,
-  album_name: PropTypes.string,
-  artwork_url: PropTypes.string,
-  release_date: PropTypes.string,
-  primary_genre_name: PropTypes.string,
-  returnRoute: PropTypes.string
+  movie: PropTypes.object,
+  refreshFavs: PropTypes.func,
+  toggleFavs: PropTypes.func,
+  user: PropTypes.object,
+  title: PropTypes.string.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+  vote_average: PropTypes.string.isRequired
 }

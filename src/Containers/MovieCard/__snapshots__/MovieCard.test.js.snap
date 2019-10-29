@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieCard should match snapshot  1`] = `
+<article
+  className="movie-card"
+  id="354920"
+>
+  <div
+    className="movie-details"
+  >
+    <h2>
+      Han Solo
+    </h2>
+    <h3>
+      Date
+    </h3>
+    <button
+      className="fav-btn favorited"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      Remove Favorite
+    </button>
+  </div>
+  <Link
+    to="/movies/354920"
+  >
+    <img
+      alt="Movie poster"
+      className="poster"
+      src="http://image.tmdb.org/t/p/w1280http://image.tmdb.org/t/p/w1280"
+    />
+  </Link>
+</article>
+`;

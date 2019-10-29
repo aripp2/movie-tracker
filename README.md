@@ -44,12 +44,15 @@ In addition to viewing the latest and greatest movies, users can also log in, lo
 <img width="1113" alt="Movie Tracker Login Screen" src="https://user-images.githubusercontent.com/17992280/67812879-ce391880-fa65-11e9-9c13-dda9a0d80c1b.png">
 
 ### Signup form:
-![Signup form screenshot](./src/images/sign-up.png)
+
+
+<img width="1263" alt="Movie Tracker Create Account" src="https://user-images.githubusercontent.com/17992280/67813482-3fc59680-fa67-11e9-8c87-0d7dc5a1e3ef.png">
+
 
 ### Logged-in home page:
 ![Logged-in home page screenshot](./src/images/logged-in-home-page.png)
 
 ### Favorites page:
-![Favorites page screenshot](./src/images/favorites-page.png)
+<img width="1263" alt="Movie Tracker Favorites" src="https://user-images.githubusercontent.com/17992280/67813478-3ccaa600-fa67-11e9-9841-01152a9655f9.png">
 
 

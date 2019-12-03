@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/movie-tracker/static/css/main.be113708.chunk.css",
+    "main.js": "/movie-tracker/static/js/main.405453da.chunk.js",
+    "main.js.map": "/movie-tracker/static/js/main.405453da.chunk.js.map",
+    "runtime-main.js": "/movie-tracker/static/js/runtime-main.33096d0c.js",
+    "runtime-main.js.map": "/movie-tracker/static/js/runtime-main.33096d0c.js.map",
+    "static/js/2.901f840c.chunk.js": "/movie-tracker/static/js/2.901f840c.chunk.js",
+    "static/js/2.901f840c.chunk.js.map": "/movie-tracker/static/js/2.901f840c.chunk.js.map",
+    "index.html": "/movie-tracker/index.html",
+    "precache-manifest.315c778e9d06606beeae8b73218023a4.js": "/movie-tracker/precache-manifest.315c778e9d06606beeae8b73218023a4.js",
+    "service-worker.js": "/movie-tracker/service-worker.js",
+    "static/css/main.be113708.chunk.css.map": "/movie-tracker/static/css/main.be113708.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.33096d0c.js",
+    "static/js/2.901f840c.chunk.js",
+    "static/css/main.be113708.chunk.css",
+    "static/js/main.405453da.chunk.js"
+  ]
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchMovies, getFavorites, addFavorite, removeFavorite } from '../../utils/apiCalls';
 import { addMovies, throwError, setFavs } from '../../actions';
@@ -38,33 +38,35 @@ export class App extends Component {
   } 
 
   render() {
-    const { errorMsg, user } = this.props
+    const { errorMsg } = this.props
     return (
-      <div className="App">
-        <Header />
+      <HashRouter basename='/'>
+        <div className="App">
+          <Header />
           {errorMsg && <h2>{errorMsg}</h2>}
-          <Route exact path='/' render={() => <MoviesContainer viewAll={true} refreshFavs={this.refreshFavs}/>}/>
-          <Route exact path='/login' 
+            <Route exact path='/' render={() => <MoviesContainer viewAll={true} refreshFavs={this.refreshFavs}/>}/>
+            <Route exact path='/login' 
             render={() => <LoginForm />} />
-          <Route exact path='/createaccount' 
+            <Route exact path='/createaccount' 
             render={() => <CreateAccount />} />
-          <Route exact path='/favorites' render={() => <MoviesContainer viewAll={false} refreshFavs={this.refreshFavs}/>}/>
-          <Route
-            path="/movies/:id"
-            render={({ match }) => {
-              let foundMovie = this.props.movies.find(movie => {
-                return movie.id === parseInt(match.params.id);
-              });
-              return (
-                <CardDetails
-                  key={foundMovie.id}
-                  movie={foundMovie}
-                  refreshFavs={this.refreshFavs}
-              />
-            );
-          }}
-        />
-      </div>
+            <Route exact path='/favorites' render={() => <MoviesContainer viewAll={false} refreshFavs={this.refreshFavs}/>}/>
+            <Route
+              path="/movies/:id"
+              render={({ match }) => {
+                let foundMovie = this.props.movies.find(movie => {
+                  return movie.id === parseInt(match.params.id);
+                });
+                return (
+                  <CardDetails
+                    key={foundMovie.id}
+                    movie={foundMovie}
+                    refreshFavs={this.refreshFavs}
+                />
+              );
+            }}
+          />
+        </div>
+      </HashRouter>
     );
   }
 }
